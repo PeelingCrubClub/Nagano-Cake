@@ -1,37 +1,35 @@
 Rails.application.routes.draw do
   
   #管理者
-  devise_for :admins, controllers:{
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
   }
   
   namespace :admin do
   root to: 'homes#top'
   
   #items
-  resouces :items, only:[:new, :show, :index, :edit, :create, :update]  
+  resources :items, only:[:new, :show, :index, :edit, :create, :update]  
   
   #genres
-  resouces :genres, only:[:index, :edit, :create, :update] 
+  resources :genres, only:[:index, :edit, :create, :update] 
   
   #customers
-  resouces :customers, only:[:index, :edit, :show, :update]
+  resources :customers, only:[:index, :edit, :show, :update]
   
   #orders
-  resouces :orders, only:[:show, :update]
-  
-  #oder_items
-  resouces :oder_items, only:[:update]
+  resources :orders, only:[:show, :update] do
+     #oder_items
+     resources :order_items, only:[:update]
+  end
   
   end
   
     
   #会員
-  devise_for :customers, controllers:{
+  devise_for :customers,skip: [:passwords,], controllers: {
     registrations: 'customers/registrations',
     sessions: 'customers/sessions',
-    passwords: 'customers/passwords',
   }
   
   scope module: :public do
@@ -41,27 +39,34 @@ Rails.application.routes.draw do
   get 'homes#about'
   
   #items
-  resouces :items, only:[:show, :index]
+  resources :items, only:[:show, :index]
   
   #cart_items
-  resouces :cart_items, only:[:index, :create, :update, :destroy] do
-  delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+  resources :cart_items, only:[:index, :create, :update, :destroy] do
+    collection do 
+    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    end
   end
    
   #orders
-   resouces :orders, only:[:new, :show, :index, :create] do
-   post 'orders/confirm' => 'orders#confirm'
-   get 'orders/complete' => 'orders#complete'
+   resources :orders, only:[:new, :show, :index, :create] do
+     collection do 
+     post 'orders/confirm' => 'orders#confirm'
+     get 'orders/complete' => 'orders#complete'
+     end
    end
    
   #customers
-   resouces :customers, only:[:show, :edit, :update] do
-   get 'customers/leave' => 'customers#leave'
-   patch 'customers/out' => 'customers#out'
+   resources :customers, only:[:show, :edit, :update] do
+     collection do 
+     get 'customers/leave' => 'customers#leave'
+     patch 'customers/out' => 'customers#out'
+     end
+   
    end
   
   #deliveries
-  resouces :deliveries, only:[:index, :create, :edit, :update, :destroy]  
+  resources :deliveries, only:[:index, :create, :edit, :update, :destroy]  
   
     
   end
