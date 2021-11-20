@@ -1,0 +1,34 @@
+ <div class="row">
+
+    <h2>注文履歴一覧</h2>
+
+       <table class="table">
+          <thead>
+            <tr class="table-head" style="background-color:#F5F5F5;">
+              <th scope="col">購入日時</th>
+              <th scope="col">購入者</th>
+              <th scope="col">注文個数</th>
+              <th scope="col">注文ステータス</th>
+            </tr>
+          </thead>
+
+          <tbody>
+           <% @orders.each do |order| %>
+            <td><%= l order.created_at %></td>
+            <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
+
+            <td><%= order.created_at %></td>
+            <td><!--注文個数合計-->
+              <% @sum = 0 %>
+              <% @order_items.each do |order_item| %>
+              <% @sum += order_item.number_of_price %>
+              <% end %>
+              <%= @sum %>
+            </td>
+            
+            <td><%= order.order_status %></td><!--注文ステータス-->
+              </tr>
+      　    <% end %>
+          </tbody>
+      </table>
+  </div>
