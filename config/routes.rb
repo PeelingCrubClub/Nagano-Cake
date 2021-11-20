@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
   
   #管理者
-  devise_for :admins, controllers:{
-    sessions: 'admins/sessions',
-    passwords: 'admins/passwords',
+  devise_for :admin, skip: [:registrations, :passwords], controllers:{
+    sessions: 'admin/sessions',
+    passwords: 'admin/passwords',
   }
   
   namespace :admin do
-  root to: 'homes#top'
+   get 'admin/new', to: 'admin/sessions#new'
   
   #items
   resouces :items, only:[:new, :show, :index, :edit, :create, :update]  
