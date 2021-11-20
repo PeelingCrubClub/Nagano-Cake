@@ -2,11 +2,11 @@ Rails.application.routes.draw do
 
   #管理者
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: 'admins/sessions',
+  sessions: 'admin/sessions',
   }
 
   namespace :admin do
-  root to: 'homes#top'
+   get 'admin/new', to: 'admin/sessions#new'
 
   #items
   resources :items, only:[:new, :show, :index, :edit, :create, :update]
@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :customers, only:[:index, :edit, :show, :update]
 
   #orders
-  resources :orders, only:[:show, :update] do
+  resources :orders, only:[:index, :show, :update] do
      #oder_items
      resources :order_items, only:[:update]
   end
