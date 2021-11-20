@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   #管理者
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: 'admins/sessions',
+  sessions: 'admin/sessions',
   }
 
   namespace :admin do
@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #orders
   resources :orders, only:[:show, :update] do
      #oder_items
-     resources :order_items, only:[:update]
+     resources :order_items, only:[:index, :update]
   end
 
   end
