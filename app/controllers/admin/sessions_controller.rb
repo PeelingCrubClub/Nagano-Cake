@@ -27,7 +27,7 @@ class Admin::SessionsController < Devise::SessionsController
 
   protected
     def after_sign_in_path_for(resource)
-      admin_order_order_items_path
+        admin_orders_path
     end
 
     def after_sign_out_path_for(resource)
