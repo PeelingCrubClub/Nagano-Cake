@@ -25,8 +25,8 @@ ja:
 
 ja:
   order:
-    updated_at: "%Y/%m/%d %H:%M:%S"    
-    
+    updated_at: "%Y/%m/%d %H:%M:%S"
+
 ja:
   enums:
     order:
@@ -36,4 +36,14 @@ ja:
         in_production: "製作中"
         ready_to_delivery: "発送準備中"
         done: "発送済み"
-        
+
+  ja:
+  enums:
+    order_item:
+      roduction_status:
+        unable: "着手不可"
+        witing: "製作待ち"
+        working: "製作中"
+        completed: "製作完了"
+
+
