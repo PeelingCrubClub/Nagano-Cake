@@ -2,7 +2,7 @@ class Item < ApplicationRecord
 
   has_many :carts, dependent: :destroy
   has_many :order_items, dependent: :destroy
-  belongs_to :genres
+  belongs_to :genre
   attachment :image
 
   # 商品価格に消費税を加える記述
