@@ -5,4 +5,5 @@ class Item < ApplicationRecord
   belongs_to :genre
   attachment :image
 
+validates :item_status, presence:{in: [true, false]}
 end
