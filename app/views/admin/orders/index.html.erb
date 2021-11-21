@@ -25,10 +25,11 @@
               <% end %>
               <%= @sum %>
             </td>
-            
-            <td><%= order.order_status %></td><!--注文ステータス-->
+            <!--注文ステータス-->
+            <td><%= order.order_status %></td>
               </tr>
       　    <% end %>
           </tbody>
       </table>
+      <%= paginate @orders %>
   </div>

@@ -20,5 +20,20 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ja:
-  time:
-    current: "%Y/%m/%d %H:%M:%S"
+  order:
+    created_at: "%Y/%m/%d %H:%M:%S"
+
+ja:
+  order:
+    updated_at: "%Y/%m/%d %H:%M:%S"    
+    
+ja:
+  enums:
+    order:
+      order_status:
+        waiting_for_deposit: "入金待ち"
+        confirmed_payment: "入金確認"
+        in_production: "製作中"
+        ready_to_delivery: "発送準備中"
+        done: "発送済み"
+        
