@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   #orders
   resources :orders, only:[:index, :show, :update] do
      #oder_items
-     resources :order_items, only:[:update]
+     resources :order_items, only:[:index, :update]
   end
 
   end

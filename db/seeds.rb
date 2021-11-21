@@ -11,3 +11,4 @@ Admin.create!(
  email: 'peeling.crub.club@dwc.com',
  password: 'peelingcrub'
 )
+
