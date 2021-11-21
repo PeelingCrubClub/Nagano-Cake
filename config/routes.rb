@@ -44,7 +44,7 @@ Rails.application.routes.draw do
   #cart_items
   resources :cart_items, only:[:index, :create, :update, :destroy] do
     collection do
-    delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
     end
   end
 
