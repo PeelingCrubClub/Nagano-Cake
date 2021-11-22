@@ -11,7 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-		order_items = order.order_item
+		order_items = order_items
   
     if order.update(order_params)
        redirect_to admin_order_path(order), notice:"注文ステータスを更新しました"#非同期通信導入検討

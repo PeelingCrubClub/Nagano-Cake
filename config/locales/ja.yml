@@ -19,15 +19,12 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-ja:
-  order:
-    created_at: "%Y/%m/%d %H:%M:%S"
 
 ja:
-  order:
-    updated_at: "%Y/%m/%d %H:%M:%S"
-
-ja:
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d"
   enums:
     order:
       order_status:
@@ -36,9 +33,6 @@ ja:
         in_production: "製作中"
         ready_to_delivery: "発送準備中"
         done: "発送済み"
-
-  ja:
-  enums:
     order_item:
       roduction_status:
         unable: "着手不可"
