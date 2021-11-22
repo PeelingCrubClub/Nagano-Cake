@@ -58,11 +58,14 @@
       <tbody>
         <% @order_items.each do |order_item| %>
           <td><%= order_item.item.item_name %></td>
-          <td><!--単価税込とってくる--></td>
+          <td><%= order_item.tax_price %></td>
           <td><%= order_item.number_of_piaces %></td>
-          <td><!--小計つくる--></td>
-          <td><!--製作ステータスとってくる--></td>
-          <td><!--editボタン--></td>
+          <td><%= (order_item.tax_price * order_item.number_of_piaces).to_s(:delimited) %></td>
+          <td>
+            <%= form_with model: [:admin, @order_item], method: :patch, local: true do |f| %>
+            <%= f.select :production_status, Order_item.production_status.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
+            <%= f.submit "更新" %>  
+          </td>
         <% end %>
       </tbody>
     </table>
@@ -72,18 +75,18 @@
     <table class="table2">
     <tbody>
       <tr>
-        <th>商品合計</th><td><!--商品合計とってくる--></td>
+        <th>商品合計</th><td><%= (@order.total_price - @order.shipping_fee).to_s(:delimited) %> </td>
       </tr>
 
       <tr>
-        <th>送料</th><td><%= @order.shipping_fee %></td>
+        <th>送料</th><td><%= (@order.shipping_fee).to_s(:delimited) %></td>
       </tr>
 
       <tr>
-        <th>請求金額合計</th><td><!--請求金額合計要編集--></td>
+        <th>請求金額合計</th><td><%= (@order.total_price).to_s(:delimited) %></td>
       </tr>
     </tbody>
-  　</table>
+   </table>
 
   </div>
 </div>

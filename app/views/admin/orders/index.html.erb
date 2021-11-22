@@ -22,7 +22,7 @@
               <%= order.order_items.sum(:number_of_pieces) %>
             </td>
             <!--注文ステータス-->
-            <td><%= order.order_status %></td>
+            <td><%= order.order_status_i18n %></td>
               </tr>
       　    <% end %>
           </tbody>
