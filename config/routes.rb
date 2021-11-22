@@ -64,21 +64,18 @@ Rails.application.routes.draw do
      patch 'customers/out' => 'customers#out'
      end
      
-
+    
    end
+  
+  
    
-   #password_resets
-   
-    resources :password_resets,  only: [:new, :create, :edit, :update]
-
-
   #deliveries
   resources :deliveries, only:[:index, :create, :edit, :update, :destroy]
-  
+     
+   
+
 
   end
-  
- 
   
 
 
