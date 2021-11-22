@@ -60,11 +60,12 @@
           <td><%= order_item.item.item_name %></td>
           <td><%= order_item.tax_price %></td>
           <td><%= order_item.number_of_piaces %></td>
-          <td><%= (order_item.tax_price * order_item.number_of_piaces).to_s(:delimited) %></td>
+          <td><%= (order_item.tax_price.to_i * order_item.number_of_piaces.to_i).to_s(:delimited) %></td>
           <td>
-            <%= form_with model: [:admin, @order_item], method: :patch, local: true do |f| %>
-            <%= f.select :production_status, Order_item.production_status.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
-            <%= f.submit "更新" %>  
+            <%= form_with model: order_item, url: admin_order_order_item_path(@order,order_item), method: :patch, local: true do |f| %>
+            <%#= f.select :production_status, Order_item.production_status.keys.map {|k| [I18n.t("enums.order_item.production_status.#{k}"), k]} %>
+            <%= f.submit "更新" %>
+            <% end %>
           </td>
         <% end %>
       </tbody>
@@ -75,15 +76,15 @@
     <table class="table2">
     <tbody>
       <tr>
-        <th>商品合計</th><td><%= (@order.total_price - @order.shipping_fee).to_s(:delimited) %> </td>
+        <th>商品合計</th><td><%= (@order.total_price.to_i - @order.shipping_fee.to_i).to_s(:delimited) %> </td>
       </tr>
 
       <tr>
-        <th>送料</th><td><%= (@order.shipping_fee).to_s(:delimited) %></td>
+        <th>送料</th><td><%= @order.shipping_fee.to_s(:delimited) %></td>
       </tr>
 
       <tr>
-        <th>請求金額合計</th><td><%= (@order.total_price).to_s(:delimited) %></td>
+        <th>請求金額合計</th><td><%= (@order.total_price.to_i).to_s(:delimited) %></td>
       </tr>
     </tbody>
    </table>
