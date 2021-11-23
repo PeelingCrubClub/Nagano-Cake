@@ -1,6 +1,7 @@
 <div class="container-fluid">
       <h2>注文履歴一覧</h2>
-
+       <p style="font-size:1.5em;">本日の注文数 <%= link_to @count, admin_orders_path(order: 'today') %>件</p>
+       
         <table class="table table-striped">
           <thead>
             <tr class="table-head" style="background-color:#FFE4E1;">
