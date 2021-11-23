@@ -1,10 +1,10 @@
 <% unless admin_signed_in? %>
-  <%= render "customer/shared/header" %>
+  <%= render "public/shared/header" %>
 <% else %>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
   <div class="container">
-    <%= link_to admin_root_path, class: "navbar-brand" do %>
+    <%= link_to admin_items_path, class: "navbar-brand" do %>
       <%= image_tag 'header_logo_2.png', { height:50 } %>
     <% end %>
 
@@ -22,7 +22,7 @@
       <%= link_to "会員一覧", admin_customers_path, class: "nav-link" %>
     </li>
     <li class="nav-item">
-      <%= link_to "注文履歴一覧", admin_root_path, class: "nav-link" %>
+      <%= link_to "注文履歴一覧", admin_orders_path, class: "nav-link" %>
     </li>
     <li class="nav-item">
       <%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link" %>
