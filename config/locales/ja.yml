@@ -34,9 +34,9 @@ ja:
         ready_to_delivery: "発送準備中"
         done: "発送済み"
     order_item:
-      roduction_status:
+      production_status:
         unable: "着手不可"
-        witing: "製作待ち"
+        waiting: "製作待ち"
         working: "製作中"
         completed: "製作完了"
 
