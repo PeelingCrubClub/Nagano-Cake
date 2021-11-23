@@ -22,16 +22,17 @@
 <tr>
   <td>販売ステータス</td>
   <td>
-    <% if @item.item_status %>
-      <span class="text-success">販売中</span>
+    <% if @item.item_status == true %>
+      販売中
     <% else %>
-      <span class="text-danger">販売停止中</span>
-    <% end %>
+      売り切れ
   </td>
 </tr>
+
  <tr>
   <td></td>
   <td>
     <%= link_to "編集する", edit_admin_item_path(@item.id), class: "btn btn-success" %>
   </td>
 </tr>
+<% end %>

@@ -23,3 +23,19 @@
   <td>電話番号</td>
   <td><%= @customer.tel %></td>
 </tr>
+<tr>
+  <td>メールアドレス</td>
+  <td><%= @customer.email %></td>
+</tr>
+<tr>
+  <td>会員ステータス</td>
+  <td><% if @customer.is_deleted == true %>有効
+       <% else %>
+        退会済み
+      <% end %>
+  </td>
+</tr>
+<div class='row'>
+  <%= link_to '編集する', edit_admin_user_path(@customer.id), class: 'btn btn-default' %>
+  <%= link_to '注文履歴一覧', admin_orders_path(user_id: @customer.id), class: 'btn btn-default' %>
+ </div>
