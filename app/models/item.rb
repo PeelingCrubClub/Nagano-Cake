@@ -7,7 +7,6 @@ class Item < ApplicationRecord
 
 
 validates :item_status, presence:{in: [true, false]}
-end
 
   # 商品価格に消費税を加える記述
   def add_tax_price
