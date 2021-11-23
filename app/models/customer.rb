@@ -10,4 +10,3 @@ class Customer < ApplicationRecord
   
   validates :is_deleted,inclusion:{in: [true, false]}
   end
-

@@ -64,6 +64,7 @@ gem 'kaminari','~> 1.2.1'
 #CSSデザインプレート
 gem 'bootstrap', '~> 4.5'
 gem 'jquery-rails'
+gem 'font-awesome-sass', '~> 5.13'
 
 #FontAwsome
 gem 'font-awesome-sass', '~> 5.13'
