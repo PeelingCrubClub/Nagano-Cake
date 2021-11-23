@@ -52,10 +52,12 @@ Rails.application.routes.draw do
   #orders
    resources :orders, only:[:new, :show, :index, :create] do
      collection do
-     post 'orders/confirm' => 'orders#confirm'
-     get 'orders/complete' => 'orders#complete'
-     end
-   end
+      post 'orders/confirm' => 'orders#confirm'
+      get 'orders/complete' => 'orders#complete'
+      end
+    end
+
+ 
 
   #customers
    resources :customers, only:[:show, :edit, :update] do
@@ -80,4 +82,4 @@ Rails.application.routes.draw do
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-end
+ end

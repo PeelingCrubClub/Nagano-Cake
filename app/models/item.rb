@@ -6,7 +6,6 @@ class Item < ApplicationRecord
   attachment :image
 
 validates :item_status, presence:{in: [true, false]}
-end
 
   # 商品価格に消費税を加える記述
   def add_tax_price
