@@ -5,7 +5,6 @@ class Item < ApplicationRecord
   belongs_to :genre
   attachment :image
 
-
 validates :item_status, presence:{in: [true, false]}
 
   # 商品価格に消費税を加える記述
@@ -13,4 +12,3 @@ validates :item_status, presence:{in: [true, false]}
     (self.price * 1.10).round
   end
 end
-
