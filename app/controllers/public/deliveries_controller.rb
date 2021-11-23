@@ -18,6 +18,7 @@ class Public::DeliveriesController < ApplicationController
   end
 
   def edit
+    @delivery_new = Delivery.new
     @delivery = Delivery.find(params[:id])
   end
 
@@ -35,7 +36,7 @@ class Public::DeliveriesController < ApplicationController
 
   private
   def delivery_params
-      params.require(:delivery).permit(:last_name, :first_name, :post_code, :address)
+      params.require(:delivery).permit(:last_name, :first_name, :delivery_postal_code, :address_name)
   end
 end
 
