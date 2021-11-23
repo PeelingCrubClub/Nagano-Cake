@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
    before_action :ensure_correct_customer, {only: [:show, :edit]}
   
    def show
-      @customer = Customer.find_by(params[:id])
+      @customer = Customer.find(params[:id])
    end
    
    def edit
@@ -12,9 +12,9 @@ class Public::CustomersController < ApplicationController
    
    def update
       
-    @customer = @customer.update(customer_params)
-   if @customer.update(customer_params)
-    redirect_to customer_edit_path(current_user.id), notice: "You have updated user successfully."
+   current_customer.update(customer_params)
+   if current_customer.update(customer_params)
+    redirect_to customer_path(current_customer.id), notice: "You have updated customer successfully."
     
    else
    
@@ -26,12 +26,13 @@ class Public::CustomersController < ApplicationController
    
    
    def leave
-    @customer = Customer.find(params[:id])
+ 
+    @customer = current_customer
    end
    
    def out
-   @customer = Customer.find(params[:id])
-       if @customer.update(is_enabled: false)
+   @customer = current_customer
+       if @customer.update(is_deleted: true)
           sign_out current_customer #Uコントローラーから直接サインアウト（devise公式)
        end
        redirect_to root_path
