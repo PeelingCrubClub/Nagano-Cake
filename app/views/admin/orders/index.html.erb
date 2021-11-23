@@ -13,7 +13,11 @@
 
           <tbody>
            <% @orders.each do |order| %>
-            <td><%= l order.created_at %></td>
+            <td>
+            <%= link_to admin_order_path(order) do %>
+            <%= l order.created_at %>
+            <% end %>
+            </td>
             <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
 
             <td><!--注文個数合計-->

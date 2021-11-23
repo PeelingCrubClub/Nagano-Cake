@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container-fluid mx-5">
     <div class="mx-9"><h3>注文履歴詳細</h3></div>
 
-    <table class="table1">
+    <table class="table table-borderless">
       <tbody>
        <tr>
          <th>購入者</th>
@@ -43,10 +43,10 @@
     </table>
 
 
-  <div class="row">
-   <div class="col-ms-6">
-      <table class="table2">
-      <thead>
+  <div class="row align-items-end">
+   <div class="col-md-7">
+      <table class="table table-borderless">
+      <thead class="table-head" style="background-color:#FFE4E1;">
        <tr>
          <th scope="col">商品名</th>
          <th scope="col">単価（税込）</th>
@@ -76,9 +76,8 @@
 
 　 <th></th>
 
-   <div class="row align-items-end">
-   <div class="col-ms-4">
-    <table class="table2">
+   <div class="col-md-4">
+    <table class="table table-borderless">
     <tbody>
       <tr>
         <th>商品合計</th><td><%= (@order.total_price.to_i - @order.shipping_fee.to_i).to_s(:delimited) %>円</td>
@@ -91,8 +90,8 @@
       <tr>
         <th>請求金額合計</th><td><%= (@order.total_price.to_i).to_s(:delimited) %>円</td>
       </tr>
-    </tbody>
-   </table>
-  </div>
+     </tbody>
+    </table>
+   </div>
   </div>
 </div>
