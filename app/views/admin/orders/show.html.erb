@@ -1,5 +1,5 @@
 <div class="container-fluid mx-5">
-    <div class="mx-9"><h3>注文履歴詳細</h3></div>
+    <div class="mx-9 mt-5"><h3>注文履歴詳細</h3></div>
 
     <table class="table table-borderless">
       <tbody>
@@ -32,7 +32,7 @@
 
        <tr>
          <th>注文ステータス</th>
-          <td><!--%= @order.order_status %要編集-->
+          <td>
           <%= form_with model: [:admin, @order], method: :patch, local: true do |f| %>
           <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
           <%= f.submit "更新" %>
