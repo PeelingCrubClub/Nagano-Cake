@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+
+@import "bootstrap";
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
+
+.main-container {
+
+   animation: image_anime 6s ease infinite;
+   height: 500px;
+   width: 100%;
+   background-size: cover;
+   background-position: center;
+  }
+@keyframes image_anime {
+  0% {
+    background-image: url(chocolate_cake.jpg);
+  }
+  50%{
+    background-image: url(syotocake.jpg);
+  }
+  100%{
+    background-image: url(aso-tocake.jpg);
+  }
+}

@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
  redirect_to login_path
  end
  end
- before_action :authenticate_customer!,except: [:top,:about]
+# before_action :authenticate_customer!,except: [:top,:about]
 
  add_flash_types :success, :info, :warning, :danger
 

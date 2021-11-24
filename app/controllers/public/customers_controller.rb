@@ -1,35 +1,35 @@
 class Public::CustomersController < ApplicationController
-   
+
    before_action :ensure_correct_customer, {only: [:show, :edit]}
-  
+
    def show
       @customer = Customer.find(params[:id])
    end
-   
+
    def edit
    @customer = Customer.find(params[:id])
    end
-   
+
    def update
-      
-    @customer = @customer.update(customer_params)
-   if @customer.update(customer_params)
-    redirect_to customer_edit_path(current_customer.id), notice: "You have updated customer successfully."
-    
+
+   current_customer.update(customer_params)
+   if current_customer.update(customer_params)
+    redirect_to customer_path(current_customer.id), notice: "You have updated customer successfully."
+
    else
-   
+
    render 'edit'
-    
+
    end
-   
+
    end
-   
-   
+
+
    def leave
- 
+
     @customer = current_customer
    end
-   
+
    def out
    @customer = current_customer
        if @customer.update(is_deleted: true)
@@ -37,7 +37,7 @@ class Public::CustomersController < ApplicationController
        end
        redirect_to root_path
    end
-    
+
   private
   def customer_params
   	  params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana,
