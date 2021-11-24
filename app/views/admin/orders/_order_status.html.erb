@@ -1,5 +1,5 @@
 
-<%= form_with model: [:admin, @order], method: :patch, remote: true do |f| %>
+<%= form_with model: [:admin, order], method: :patch, remote: true do |f| %>
 <%= f.select :order_status, Order.order_statuses.keys.map {|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
 <%= f.submit "更新" %>
 <% end %>

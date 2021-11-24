@@ -1,1 +1,1 @@
-$('#order_status_<%= @order.id %>').html("<%= j(render partial: 'orders/order_status', locals: {order: @order}) %>");
+$("#order_status_<%= @order.id %>").html("<%= j(render partial: 'admin/orders/order_status', locals: {order: @order}) %>");
