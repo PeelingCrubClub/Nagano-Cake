@@ -95,4 +95,14 @@
     </table>
    </div>
   </div>
+
+  <h1>Ajax#index</h1>
+<p id="hoge">赤色になるよ</p>
+
 </div>
+
+<script>
+  $("#order_status_<%= @order.id %>").html("<%= j(render partial: 'admin/orders/order_status', locals: {order: @order}) %>");
+  // $("#order_status_<%= @order.id %>").html("10");
+  $("#hoge").css("color","red")
+</script>

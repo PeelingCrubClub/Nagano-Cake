@@ -4,13 +4,19 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: 'admin/sessions',
   }
-
+  
   namespace :admin do
    get 'admin/new', to: 'admin/sessions#new'
+   
 
   #items
-  resources :items, only:[:new, :show, :index, :edit, :create, :update]
-
+  resources :items, only:[:new, :show, :index, :edit, :create, :update] do
+      #検索機能
+    #   collection do
+    #   get 'search'
+    #   end
+  end
+      
   #genres
   resources :genres, only:[:index, :edit, :create, :update]
 

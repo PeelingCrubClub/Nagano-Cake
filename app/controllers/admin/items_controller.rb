@@ -7,6 +7,13 @@ class Admin::ItemsController < ApplicationController
   def index
     @item = Item.all
   end
+  
+# 　def search
+# 　  @Items = Item.where('item_name LIKE(?)', "%#{params[:keyword]}%")
+#   　@keyword = params[:keyword]
+#     render "index"
+# 　end
+  
 
   def create
     @item = Item.new(item_params)
