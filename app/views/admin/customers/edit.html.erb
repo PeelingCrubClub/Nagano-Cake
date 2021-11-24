@@ -1,56 +1,79 @@
-<h4><%= customer.first_name + customer.last_name %>さんの会員情報編集</h4>
+<div class="container">
+  <div class="row mx-auto">
+    <h2><span class="badge badge-secondary"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員情報編集</h4>
+   </div>
 
-<%= form_for(@customer, url: admin_customer_path(@customer.id)) do |f| %>
-<tr>
-  <td>会員ID</td>
-  <td><%= @customer.id %></td>
-</tr>
+  <%= form_for(@customer, url: admin_customer_path(@customer.id)) do |f| %>
+   <div class="mb-3 row">
+     <%= f.label :id, "会員ID", class:"col-sm-3 col-form-label" %>
+      <%= @customer.id %>
+   </div>
+   <div class="mb-3 row">
+     <%= f.label :"氏名", class:"col-sm-3 col-form-label" %>
+     <div class="col-sm-4">
+       <%= f.label :"(姓)" %><%= f.text_field :last_name, autofocus: true, class:"form-control" %>
+     </div>
+     <div class="col-sm-4">
+       <%= f.label :"(名)" %><%= f.text_field :first_name, autofocus: true, class:"form-control" %>
+     </div>
+   </div>
 
-<tr>
-  <td>氏名</td>
-  <td><%= f.text_field :first_name %></td>
-  <td><%= f.text_field :last_name %></td>
-</tr>
+   <div class="mb-3 row">
+     <%= f.label :"フリガナ", class:"col-sm-3 col-form-label" %>
+     <div class="col-sm-4">
+       <%= f.label :"(セイ)" %><%= f.text_field :last_name_kana, autofocus: true, class:"form-control" %>
+     </div>
+     <div class="col-sm-4">
+       <%= f.label :"(メイ)" %><%= f.text_field :first_name_kana, autofocus: true, class:"form-control" %>
+    </div>
+  </div>
 
-<tr>
-  <td>ふりがな</td>
-  <td><%= f.text_field :first_name_kana %></td>
-  <td><%= f.text_field :last_name_kana %></td>
-</tr>
+  <div class="mb-3 row">
+    <%= f.label :"郵便番号（ハイフンなし）", class:"col-sm-3 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code", class:"form-control" %>
+    </div>
+  </div>
 
-<tr>
-  <td>郵便番号</td>
-  <td><%= f.text_field :postal_code %></td>
-</tr>
+  <div class="mb-3 row">
+    <%= f.label :"住所", class:"col-sm-3 col-form-label" %>
+     <div class="col-sm-8">
+       <%= f.text_field :address, autofocus: true, class:"form-control" %>
+     </div>
+  </div>
 
-<tr>
-  <td>住所</td>
-  <td><%= f.text_field :address %></td>
-</tr>
+  <div class="mb-3 row">
+    <%= f.label :"電話番号（ハイフンなし）", class:"col-sm-3 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :tel, autofocus: true, class:"form-control" %>
+    </div>
+  </div>
 
-<tr>
-  <td>電話番号</td>
-  <td><%= f.text_field :tel %></td>
-</tr>
+  <div class="mb-3 row">
+    <%= f.label :"メールアドレス", class:"col-sm-3 col-form-label" %>
+    <div class="col-sm-4">
+      <%= f.text_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
+  </div>
 
-<tr>
-  <td>メールアドレス</td>
-  <td><%= f.text_field :email %></td>
-</tr>
+  <div class="mb-3 row">
+    <%= f.label :"会員ステータス", class:"col-sm-3 col-form-label" %>
+    <div class="col-sm-1">
+       <%= f.radio_button :is_deleted, false, class:"form-check-input" %>
+       <%= f.label :is_deleted, '有効', value: false, class:"form-check-label" %>
+    </div>
+    <div class="col-sm-1">
+      <%= f.radio_button :is_deleted, true, class:"form-check-input" %>
+      <%= f.label :is_deleted, "退会", value: true, class:"form-check-label" %>
+    </div>
+  </div>
 
-<tr>
-  <td>会員ステータス</td>
-  <td>
-    <%= f.radio_button :is_deleted, true %>
-    <%= f.label :is_deleted, "有効", value: true %>
-  </td>
-  <td>
-    <%= f.radio_button :is_deleted, false %>
-    <%= f.label :is_deleted,"退会済み",value: false %>
-  </td>
-</tr>
-
-<tr>
-  <td><%= f.submit '変更を保存する' %<</td>
-</tr>
+  <div class="mb-3 row">
+    <div class="col-sm-4">
+   </div>
+    <div class="col-sm-6">
+      <%= f.submit "変更を保存" ,class:"btn btn-success" %>
+     </div>
+   </div>
 <% end %>
+</div>
