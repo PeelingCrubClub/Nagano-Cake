@@ -72,3 +72,6 @@ gem 'font-awesome-sass', '~> 5.13'
 #デバック
 gem 'pry-rails'
 gem 'pry-byebug'
+
+#非同期通信
+gem 'jquery-rails'

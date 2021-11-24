@@ -26,11 +26,11 @@ class Admin::OrdersController < ApplicationController
     order = Order.find(params[:id])
 		order_items = order.order_items
   
-    if order.update(order_params)
-       redirect_to admin_order_path(order), notice:"注文ステータスを更新しました"#非同期通信導入検討
-    else
-       render :show, alert: "注文ステータスを更新できませんでした"
-    end
+    # if order.update(order_params)
+    #   redirect_to admin_order_path(order), notice:"注文ステータスを更新しました"#非同期通信導入検討
+    # else
+    #   render :show, alert: "注文ステータスを更新できませんでした"
+    # end
   end
 
 
