@@ -13,7 +13,7 @@ class Public::OrdersController < ApplicationController
          @order_items = @order.order_items.new
          @order_items.item_id = cart_item.items.id
          @order_items.tax_price = cart_item.item.tax_price * 1.1
-         @order_items.number_of_piaces = cart_item.number_of_piaces
+         @order_items.number_of_piaces = cart_item.piaces
          @order_items.save
          current_customer.cart_items.destroy_all
        end
@@ -37,7 +37,7 @@ class Public::OrdersController < ApplicationController
      @order.customer_id = current_customer.id
      @order.shipping_fee = 800 #送料の設定
      @cart_items = current_customer.cart_items
-     @total_price = @order.shipping_fee + @cart_items.items_of_price #請求額の合計
+     @all_price = @order.shipping_fee + @cart_items.items_of_price #請求額の合計
 
      if params[:order][:to_address] == "0"
         @receiver_name = current_customer.last_name + current_customer.first_name

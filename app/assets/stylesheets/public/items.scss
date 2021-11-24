@@ -1,3 +1,43 @@
 // Place all the styles related to the public/items controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.container-fluid {
+margin-right: auto;
+margin-left: auto;
+max-width: 600px;
+}
+
+.hr0 {
+padding-top: 0px;
+margin-top: 0px;
+height: 2px;
+background-color: black;
+border: none;
+}
+
+.genre {
+font-size: x-large;
+padding: 0px;
+margin: 0px;
+}
+
+.genre-text {
+font-size: medium;
+color: black;
+}
+
+.cake_name {
+font-size: x-large;
+font-weight: bold;
+color: black;
+}
+
+.cake_introduction {
+font-size: large;
+color: black;
+}
+
+li{
+  list-style:none;
+}
