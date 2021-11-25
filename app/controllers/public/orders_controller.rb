@@ -2,22 +2,24 @@ class Public::OrdersController < ApplicationController
 
    def new
      @order = Order.new
-     @deliveries = current_customer.deliveries
+     @cart_item = CartItem.where(customer_id: current_customer.id)
+     @customer = current_customer
    end
 
    def create
+     @cart_items = current_customer.cart_items.all
      @order = Order.new(order_params)
      if @order.save
-       @cart_items = current_customer.cart_items.all
        @cart_items.each do |cart_item|
-         @order_items = @order.order_items.new
-         @order_items.item_id = cart_item.items.id
-         @order_items.tax_price = cart_item.item.tax_price * 1.1
-         @order_items.number_of_piaces = cart_item.piaces
-         @order_items.save
-         current_customer.cart_items.destroy_all
+         order_item = OrderItem.new
+         order_item.item_id = cart_item.items_id
+         order_item.order_id = @order.id
+         order_item.tax_price = cart_item.item.pieces
+         order_item.number_of_piaces = cart_item.price
+         order_item.save
        end
        redirect_to orders_complete_orders_path
+       @cart_items.destroy_all
      else
        @deliveries = current_customer.deliveries
        render :new, alert: "カートに商品が入っておりません"
@@ -25,34 +27,37 @@ class Public::OrdersController < ApplicationController
    end
 
    def index
-     @orders = Order.where(customer_id: current_customer.id).page(params[:page]).per(5)
+     @orders = current_customer.orders.page(params[:page]).reverse_order.per(5)
    end
 
    def show
      @order = Order.find(params[:id])
+     @ordered_items = @order.order_items
+     @order.shipping_fee = 800
    end
 
    def confirm
      @order = Order.new(order_params)
-     @order.customer_id = current_customer.id
      @order.shipping_fee = 800 #送料の設定
-     @cart_items = current_customer.cart_items
-     @all_price = @order.shipping_fee + @cart_items.items_of_price #請求額の合計
-
+     @total_price = 0
+    # @order.tax_total_price = @total_price + @order.shipping_fee
      if params[:order][:to_address] == "0"
-        @receiver_name = current_customer.last_name + current_customer.first_name
-        @shipping_postal_code = current_customer.postal_code
-        @delivery_address = current_customer.address
+        @order.shipping_postal_code = current_customer.postal_code
+        @order.delivery_address = current_customer.address
+        @order.receiver_name = current_customer.last_name + current_customer.first_name
      elsif params[:order][:to_address] == "1" #お届けの方法が登録している住所の時
-        @customer_address = Delivery.find(params[:order][:delivery_id])
-        @receiver_name = @customer_address.name
-        @shipping_postal_code = @customer_address.postal_code
-        @delivery_address = @customer_address.address
+        @delivery = Delivery.find(params[:order][:delivery_id])
+        @order.shipping_postal_code = @delivery.delivery_postal_code
+        @order.delivery_address = @delivery.delivery_address
+        @order.receiver_name = @delivery.address_name
      elsif  params[:order][:to_address] == "2" #新しいお届け先
-        @receiver_name = @order.receiver_name
-        @shipping_postal_code = @order.shipping_postal_code
-        @delivery_address = @order.delivery_address
+        address_new = current_customer.deliveries.new(address_params)
+        if address_new.save
+        end
+     else
+       redirect_to new_order_path
      end
+    @cart_items = current_customer.cart_items.all
    end
 
    def complete
@@ -62,6 +67,10 @@ class Public::OrdersController < ApplicationController
 
   def order_params
   params.require(:order).permit(:customer_id, :shipping_fee, :total_price, :payment_method, :receiver_name, :shipping_postal_code, :delivery_address, :order_status)
+  end
+
+  def address_params
+    params.require(:order).permit(:postal_code, :address, :name )
   end
 
 end
