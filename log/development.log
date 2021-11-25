@@ -1,0 +1,547 @@
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from <top (required)> at /home/ec2-user/environment/Nagano-Cake/app/models/application_record.rb:1)
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from <top (required)> at /home/ec2-user/environment/Nagano-Cake/app/models/application_record.rb:1)
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (9.8ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to DeviseCreateCustomers (20211118055202)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "customers" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "first_name" varchar, "last_name" varchar, "first_name_kana" varchar, "last_name_kana" varchar, "postal_code" varchar, "address" varchar, "tel" varchar, "is_deleted" boolean DEFAULT 'f' NOT NULL, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_customers_on_email" ON "customers" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_customers_on_reset_password_token" ON "customers" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211118055202"]]
+  [1m[35m (4.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to DeviseCreateAdmins (20211118062520)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "admins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_email" ON "admins" ("email")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_admins_on_reset_password_token" ON "admins" ("reset_password_token")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211118062520"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateDeliveries (20211119041118)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "deliveries" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer, "delivery_postal_code" varchar, "address_name" varchar, "delivery_address" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119041118"]]
+  [1m[35m (4.5ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrderItems (20211119042326)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "order_items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "item_id" integer, "order_id" integer, "tax_price" integer, "number_of_piaces" integer, "production_status" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119042326"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateOrders (20211119042521)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "orders" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer, "shipping_postal_code" varchar, "receiver_name" varchar, "delivery_address" varchar, "shipping_fee" integer, "total_price" integer, "payment_method" integer, "order_status" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119042521"]]
+  [1m[35m (4.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateItems (20211119042817)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "genre_id" integer, "item_name" varchar, "image_id" varchar, "detail" text, "price" integer, "item_status" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119042817"]]
+  [1m[35m (4.1ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateGenres (20211119043010)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "genres" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119043010"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateCartItems (20211119043523)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[35mCREATE TABLE "cart_items" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "customer_id" integer, "item_id" integer, "pieces" integer, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20211119043523"]]
+  [1m[35m (3.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-11-25 08:07:37.356150"], ["updated_at", "2021-11-25 08:07:37.356150"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+DEPRECATION WARNING: Leaving `ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer`
+set to false is deprecated. SQLite databases have used 't' and 'f' to serialize
+boolean values and must have old data converted to 1 and 0 (its native boolean
+serialization) before setting this flag to true. Conversion can be accomplished
+by setting up a rake task which runs
+
+  ExampleModel.where("boolean_column = 't'").update_all(boolean_column: 1)
+  ExampleModel.where("boolean_column = 'f'").update_all(boolean_column: 0)
+
+for all models and all boolean columns, after which the flag must be set to
+true by adding the following to your application.rb file:
+
+  Rails.application.config.active_record.sqlite3.represent_boolean_as_integer = true
+ (called from <top (required)> at /home/ec2-user/environment/Nagano-Cake/app/models/application_record.rb:1)
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:07:43 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (4.7ms)
+  Rendered public/shared/_header.html.erb (8.6ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 16869ms (Views: 16837.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:08:11 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#new as HTML
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (1.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (18.6ms)
+  Rendered public/shared/_header.html.erb (5.0ms)
+  Rendered shared/_footer.html.erb (10.1ms)
+Completed 200 OK in 228ms (Views: 197.9ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:08:18 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UodvzL3/t8RKWV5U1sTeprTn4atOhxFy//kJOB/InmMfUW7XViwAaaFbdNReBckHLDvOwB/Vt2UbWBAIo3xpZw==", "customer"=>{"email"=>"", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Processing by Customers::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"UodvzL3/t8RKWV5U1sTeprTn4atOhxFy//kJOB/InmMfUW7XViwAaaFbdNReBckHLDvOwB/Vt2UbWBAIo3xpZw==", "customer"=>{"email"=>"", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (4.5ms)
+  Rendered public/shared/_header.html.erb (5.6ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 171ms (Views: 170.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:08:20 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.8ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (10.2ms)
+  Rendered public/shared/_header.html.erb (1.7ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 191ms (Views: 189.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers" for 153.240.32.134 at 2021-11-25 08:08:48 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"3d9GnqVvO1CBGUwZWDcK54Ol955sg0LnQgDh4LvlCWow4jHJO1bi2A/ThV4TlJgtj7xbtKd4lXPt2sOcv04DGQ==", "customer"=>{"last_name_kana"=>"た", "first_name_kana"=>"ta", "last_name"=>"ta", "first_name"=>"ta", "delivery_postal_code"=>"00000000", "delivery_address"=>"東京都", "tel"=>"00000000", "email"=>"xxxxxxx@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+Unpermitted parameters: :last_name_kana, :first_name_kana, :last_name, :first_name, :delivery_postal_code, :delivery_address, :tel
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCustomer Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "customers" WHERE "customers"."email" = ? LIMIT ?[0m  [["email", "xxxxxxx@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCustomer Create (2.5ms)[0m  [1m[32mINSERT INTO "customers" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "xxxxxxx@gmail.com"], ["encrypted_password", "$2a$12$0.F9cq0zGesmQZfxRM7Ra.WUSLWgjclqnO0RJJmrbN9ibRFRYLrzW"], ["created_at", "2021-11-25 08:08:48.936255"], ["updated_at", "2021-11-25 08:08:48.936255"]]
+  [1m[35m (5.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/1
+Completed 302 Found in 336ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/customers/1" for 153.240.32.134 at 2021-11-25 08:08:49 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (0.9ms)
+  Rendered public/shared/_header.html.erb (5.6ms)
+  Rendered shared/_footer.html.erb (0.9ms)
+Completed 200 OK in 185ms (Views: 176.2ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/customers/sign_out" for 153.240.32.134 at 2021-11-25 08:09:08 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"L/tFIQcPD6nughpnPcL6HMeOnJcGyueGltR0irUGk5YH3anBI2RadH4HrWZbiODtbs9wbpfLsMVKWVRqV/Jd9w=="}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/
+Completed 302 Found in 11ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:09:08 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (1.6ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (3.1ms)
+  Rendered public/shared/_header.html.erb (6.0ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 160ms (Views: 157.4ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:09:11 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.8ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (9.6ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 192ms (Views: 191.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:09:13 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#new as HTML
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (4.4ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 168ms (Views: 167.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:09:25 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i0DYw5ViA0AkOZb6xKjvJRa6R2fBUUeRmh53o2/kmeLGltnYfrG07c87vHpMafiEjmZoDJAD4YZ+v26T01Bu5g==", "customer"=>{"email"=>"xxxxxx@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."email" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["email", "xxxxxx@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.2ms)
+
+
+Processing by Customers::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i0DYw5ViA0AkOZb6xKjvJRa6R2fBUUeRmh53o2/kmeLGltnYfrG07c87vHpMafiEjmZoDJAD4YZ+v26T01Bu5g==", "customer"=>{"email"=>"xxxxxx@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (4.7ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 470ms (Views: 164.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:09:29 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dsBYK8drRw5E9isMGn8TdJ2nJrQoxyntu+IV5CjPF3de5rTL4wAS09RznA18NQmFNObKTbnGfq5nbzUEyjvZFg==", "customer"=>{"email"=>"xxxxxx@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."email" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["email", "xxxxxx@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 4ms (ActiveRecord: 0.1ms)
+
+
+Processing by Customers::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"dsBYK8drRw5E9isMGn8TdJ2nJrQoxyntu+IV5CjPF3de5rTL4wAS09RznA18NQmFNObKTbnGfq5nbzUEyjvZFg==", "customer"=>{"email"=>"xxxxxx@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.7ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (4.5ms)
+  Rendered public/shared/_header.html.erb (4.3ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 467ms (Views: 161.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:09:37 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cv9kOK2KbTaqg/K/RDeOtXAkjQy9sMGZUIe3/+Y8Qp1a2YjYieE46zoGRb4ifZRE2WVh9SyxltqMCpcfBMiM/A==", "customer"=>{"email"=>"sssss@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."email" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["email", "sssss@gmail.com"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 3ms (ActiveRecord: 0.1ms)
+
+
+Processing by Customers::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"cv9kOK2KbTaqg/K/RDeOtXAkjQy9sMGZUIe3/+Y8Qp1a2YjYieE46zoGRb4ifZRE2WVh9SyxltqMCpcfBMiM/A==", "customer"=>{"email"=>"sssss@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.7ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (6.5ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 487ms (Views: 182.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:09:49 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.9ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (13.2ms)
+  Rendered public/shared/_header.html.erb (3.1ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 179ms (Views: 178.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers" for 153.240.32.134 at 2021-11-25 08:10:16 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JpkK5XOP8o416IzdGR4JuyxXbtw9IGkI/nhb9MrrRgvLpH2y7bYrBrsiRZpSvZtxIE7C9vbbvpxRonmIzkBMeA==", "customer"=>{"last_name_kana"=>"ta", "first_name_kana"=>"ta", "last_name"=>"ta", "first_name"=>"ta", "delivery_postal_code"=>"00000000", "delivery_address"=>"0000000000", "tel"=>"0000000000", "email"=>"a@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+Unpermitted parameters: :last_name_kana, :first_name_kana, :last_name, :first_name, :delivery_postal_code, :delivery_address, :tel
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCustomer Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "customers" WHERE "customers"."email" = ? LIMIT ?[0m  [["email", "a@gmail.com"], ["LIMIT", 1]]
+  [1m[36mCustomer Create (3.5ms)[0m  [1m[32mINSERT INTO "customers" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "a@gmail.com"], ["encrypted_password", "$2a$12$.Sbr6u3n887pP6tvZFeFcOAQfua8gNu8qVgUuE9r4m9LrY8VZj3/6"], ["created_at", "2021-11-25 08:10:17.055043"], ["updated_at", "2021-11-25 08:10:17.055043"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/2
+Completed 302 Found in 326ms (ActiveRecord: 7.7ms)
+
+
+Started GET "/customers/2" for 153.240.32.134 at 2021-11-25 08:10:17 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (2.1ms)
+  Rendered public/shared/_header.html.erb (6.1ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 143ms (Views: 138.1ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/customers/sign_out" for 153.240.32.134 at 2021-11-25 08:10:23 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"X2iN3gBgm8+mVT9R1MTadOFEtWmA+FGH7rOmwIclZQN3TmE+JAvOEjbQiFCyjsCFSAVZkBH5BsQyPoYgZdGrYg=="}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/
+Completed 302 Found in 7ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:10:23 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (2.7ms)
+  Rendered public/shared/_header.html.erb (4.5ms)
+  Rendered shared/_footer.html.erb (0.6ms)
+Completed 200 OK in 158ms (Views: 156.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:10:24 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.4ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (1.0ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (11.2ms)
+  Rendered public/shared/_header.html.erb (2.6ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 175ms (Views: 174.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:10:26 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#new as HTML
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (4.4ms)
+  Rendered public/shared/_header.html.erb (5.8ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 149ms (Views: 147.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:10:35 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"76rdU8rcAj6WV7YKXcXyNBtyXydKYCqZpYda5LH05f2ifNxIIQ+1k31VnIrVBOWVg65wTBsyjI5BJkPUDUAS+Q==", "customer"=>{"email"=>"a@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."email" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["email", "a@gmail.com"], ["LIMIT", 1]]
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/2
+Completed 302 Found in 315ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/customers/2" for 153.240.32.134 at 2021-11-25 08:10:36 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (1.0ms)
+  Rendered public/shared/_header.html.erb (5.9ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 173ms (Views: 167.1ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/customers/sign_out" for 153.240.32.134 at 2021-11-25 08:13:48 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"J8qx3TgaKoqJN9+JcZDtFAT4WEbEh3rpzxF7O3NzeAxDUmZdDSeSP4o9CxFkUxVTsOvDuZSNXr4j1LIfIbMDFw=="}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/
+Completed 302 Found in 24ms (ActiveRecord: 0.9ms)
+
+
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:13:49 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (2.6ms)
+  Rendered public/shared/_header.html.erb (3.4ms)
+  Rendered shared/_footer.html.erb (0.2ms)
+Completed 200 OK in 227ms (Views: 215.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:13:50 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.5ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.7ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (11.2ms)
+  Rendered public/shared/_header.html.erb (3.4ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 159ms (Views: 157.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers" for 153.240.32.134 at 2021-11-25 08:14:24 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M0xfIYHh10D68/+MP20+H7d2RJNnsds5Jv8igsBtOBDyJwv3Kvyt74MGNWCGovZsh5/7lwKFL1CK2xz64OzG1g==", "customer"=>{"last_name_kana"=>"f", "first_name_kana"=>"f", "last_name"=>"f", "first_name"=>"f", "delivery_postal_code"=>"f", "delivery_address"=>"f", "tel"=>"f", "email"=>"f@f", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+Unpermitted parameters: :last_name_kana, :first_name_kana, :last_name, :delivery_postal_code, :delivery_address, :tel
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCustomer Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "customers" WHERE "customers"."email" = ? LIMIT ?[0m  [["email", "f@f"], ["LIMIT", 1]]
+  [1m[36mCustomer Create (4.0ms)[0m  [1m[32mINSERT INTO "customers" ("email", "encrypted_password", "first_name", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "f@f"], ["encrypted_password", "$2a$12$VCPVekmgXzG0DzuHfnHRE.Kf0pBPTQKBjQXW5KgsDRvZpIFSgUOpy"], ["first_name", "f"], ["created_at", "2021-11-25 08:14:25.273732"], ["updated_at", "2021-11-25 08:14:25.273732"]]
+  [1m[35m (3.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/3
+Completed 302 Found in 326ms (ActiveRecord: 8.1ms)
+
+
+Started GET "/customers/3" for 153.240.32.134 at 2021-11-25 08:14:25 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (1.0ms)
+  Rendered public/shared/_header.html.erb (5.8ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 181ms (Views: 172.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:20:39 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/3
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 22ms (ActiveRecord: 0.8ms)
+
+
+Started GET "/customers/3" for 153.240.32.134 at 2021-11-25 08:20:39 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mCustomer Load (0.2ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (2.3ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 159ms (Views: 151.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:20:54 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (0.2ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (2.8ms)
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered public/shared/_header.html.erb (8.8ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 170ms (Views: 161.0ms | ActiveRecord: 0.6ms)
+
+
+Started DELETE "/customers/sign_out" for 153.240.32.134 at 2021-11-25 08:20:57 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"6J+HRDceTTumwhZ6Jl28w59UCfk3qG0MpdXmDQvWKUWMB1DEAiP1jqXIwuIznkSEK0eSBmeiSVtJEC8pWRZSXg=="}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms)
+
+
+Started GET "/" for 153.240.32.134 at 2021-11-25 08:20:57 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::HomesController#top as HTML
+  Rendering public/homes/top.html.erb within layouts/application
+  [1m[36mItem Load (0.1ms)[0m  [1m[34mSELECT  "items".* FROM "items" ORDER BY "items"."created_at" DESC LIMIT ?[0m  [["LIMIT", 4]]
+  Rendered public/homes/top.html.erb within layouts/application (3.1ms)
+  Rendered public/shared/_header.html.erb (4.7ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 173ms (Views: 172.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/customers/sign_in" for 153.240.32.134 at 2021-11-25 08:20:59 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::SessionsController#new as HTML
+  Rendering customers/sessions/new.html.erb within layouts/application
+  Rendered customers/shared/_links.html.erb (0.8ms)
+  Rendered customers/sessions/new.html.erb within layouts/application (5.4ms)
+  Rendered public/shared/_header.html.erb (6.1ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 191ms (Views: 189.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/customers/sign_up" for 153.240.32.134 at 2021-11-25 08:21:03 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#new as HTML
+  Rendering customers/registrations/new.html.erb within layouts/application
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_error_messages.html.erb (0.5ms)
+  Rendered /home/ec2-user/.rvm/gems/ruby-2.6.3/gems/devise-4.8.0/app/views/devise/shared/_links.html.erb (0.9ms)
+  Rendered customers/registrations/new.html.erb within layouts/application (10.1ms)
+  Rendered public/shared/_header.html.erb (5.7ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 165ms (Views: 163.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/customers" for 153.240.32.134 at 2021-11-25 08:21:20 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Customers::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gWgz0q2A7Q1Zfeuwu/mR0VYG8QDRIRnVK560fphbfSpAA2cEBp2XoiCIIVwCNlmiZu9OBLQV7byHuooGuNqD7A==", "customer"=>{"last_name_kana"=>"xxx", "first_name_kana"=>"xxx", "last_name"=>"xxx", "first_name"=>"xxx", "postal_code"=>"xxx", "address"=>"xxxxx", "tel"=>"xxxxx", "email"=>"x@x", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCustomer Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "customers" WHERE "customers"."email" = ? LIMIT ?[0m  [["email", "x@x"], ["LIMIT", 1]]
+  [1m[36mCustomer Create (2.3ms)[0m  [1m[32mINSERT INTO "customers" ("email", "encrypted_password", "first_name", "last_name", "first_name_kana", "last_name_kana", "postal_code", "address", "tel", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["email", "x@x"], ["encrypted_password", "$2a$12$KzqhzAi1H61zmkv4RsRRN.bAbiibrGnENraop/rLBS7iQWyMHbyZe"], ["first_name", "xxx"], ["last_name", "xxx"], ["first_name_kana", "xxx"], ["last_name_kana", "xxx"], ["postal_code", "xxx"], ["address", "xxxxx"], ["tel", "xxxxx"], ["created_at", "2021-11-25 08:21:21.037377"], ["updated_at", "2021-11-25 08:21:21.037377"]]
+  [1m[35m (4.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to https://8ea7016ca92a44629747acb401a394eb.vfs.cloud9.us-east-1.amazonaws.com/customers/4
+Completed 302 Found in 323ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/customers/4" for 153.240.32.134 at 2021-11-25 08:21:21 +0000
+Cannot render console from 153.240.32.134! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
+Processing by Public::CustomersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCustomer Load (0.1ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? ORDER BY "customers"."id" ASC LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE Customer Load (0.0ms)[0m  [1m[34mSELECT  "customers".* FROM "customers" WHERE "customers"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering public/customers/show.html.erb within layouts/application
+  Rendered public/customers/show.html.erb within layouts/application (1.1ms)
+  Rendered public/shared/_header.html.erb (1.6ms)
+  Rendered shared/_footer.html.erb (0.3ms)
+Completed 200 OK in 160ms (Views: 155.5ms | ActiveRecord: 0.2ms)
+
+
