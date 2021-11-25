@@ -20,7 +20,7 @@ class Public::OrdersController < ApplicationController
        redirect_to orders_complete_orders_path
      else
        @deliveries = current_customer.deliveries
-       render :new
+       render :new, alert: "カートに商品が入っておりません"
      end
    end
 

@@ -1,8 +1,10 @@
 <div class="container">
-  <div class="row mx-auto">
+  <div class="row">
+    <div class="col-lg-10 col-xl-8 mx-auto">
+      <h2 class="mb-4">
     <h2><span class="badge badge-secondary"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員情報編集</h4>
    </div>
-
+<%= render 'shared/form_error', model: @customer %>
   <%= form_for(@customer, url: admin_customer_path(@customer.id)) do |f| %>
    <div class="mb-3 row">
      <%= f.label :id, "会員ID", class:"col-sm-3 col-form-label" %>

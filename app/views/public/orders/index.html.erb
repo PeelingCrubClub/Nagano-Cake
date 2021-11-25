@@ -1,5 +1,6 @@
 <% if @orders.exists? %>
   <div class="row mt-5">
+    <%= render "shared/flash_message" %>
     <table class="table table-bordered table-hover">
       <thead class="table-active text">
         <tr>
