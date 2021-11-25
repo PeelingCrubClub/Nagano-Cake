@@ -7,15 +7,15 @@ class Public::OrdersController < ApplicationController
    end
 
    def create
-     @cart_items = current_customer.cart_items.all
-     @order = Order.new(order_params)
+     @cart_items = current_customer.cart_items
+     @order = current_customer.orders.new(order_params)
      if @order.save
        @cart_items.each do |cart_item|
          order_item = OrderItem.new
-         order_item.item_id = cart_item.items_id
+         order_item.item_id = cart_item.item_id
          order_item.order_id = @order.id
-         order_item.tax_price = cart_item.item.pieces
-         order_item.number_of_piaces = cart_item.price
+         order_item.tax_price = cart_item.pieces
+         order_item.number_of_piaces = cart_item.item.price
          order_item.save
        end
        redirect_to orders_complete_orders_path
@@ -39,8 +39,6 @@ class Public::OrdersController < ApplicationController
    def confirm
      @order = Order.new(order_params)
      @order.shipping_fee = 800 #送料の設定
-     @total_price = 0
-    # @order.tax_total_price = @total_price + @order.shipping_fee
      if params[:order][:to_address] == "0"
         @order.shipping_postal_code = current_customer.postal_code
         @order.delivery_address = current_customer.address

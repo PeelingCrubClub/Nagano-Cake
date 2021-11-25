@@ -53,7 +53,7 @@
               </tr>
               <tr>
                 <th>請求金額</th>
-                <td><%= @total_price.floor.to_s(:delimited) %></td>
+                <td><%= (@order.shipping_fee + @sum).floor.to_s(:delimited) %></td>
               </tr>
             </tbody>
           </table>
