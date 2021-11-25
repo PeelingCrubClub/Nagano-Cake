@@ -19,6 +19,12 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+body{
+  background-image: image-url('white.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .main-container {
   animation: image_anime 6s ease infinite;
   height: 500px;

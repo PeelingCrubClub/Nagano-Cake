@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations',
     sessions: 'customers/sessions',
   }
-
+# devise_for :customers, module: "customers"
 
   scope module: :public do
 
