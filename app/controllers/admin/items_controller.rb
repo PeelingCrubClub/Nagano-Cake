@@ -7,13 +7,15 @@ class Admin::ItemsController < ApplicationController
   def index
     @item = Item.all
   end
-  
-# 　def search
-# 　  @Items = Item.where('item_name LIKE(?)', "%#{params[:keyword]}%")
-#   　@keyword = params[:keyword]
-#     render "index"
-# 　end
-  
+
+  def search
+    if params[:keyword].present?
+       @items = Item.where('item_name LIKE ?', "%#{params[:keyword]}%")
+    else
+      @items = Item.none
+    end
+  end
+
 
   def create
     @item = Item.new(item_params)
@@ -45,5 +47,4 @@ class Admin::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:image, :item_name,:detail,:price,:item_status,:genre_id,:validation)
   end
-
 end

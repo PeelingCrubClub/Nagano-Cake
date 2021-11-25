@@ -4,19 +4,18 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: 'admin/sessions',
   }
-  
+
   namespace :admin do
    get 'admin/new', to: 'admin/sessions#new'
-   
 
   #items
   resources :items, only:[:new, :show, :index, :edit, :create, :update] do
       #検索機能
-    #   collection do
-    #   get 'search'
-    #   end
+      collection do
+      get 'search' => 'items#search'
+      end
   end
-      
+
   #genres
   resources :genres, only:[:index, :edit, :create, :update]
 
@@ -37,7 +36,7 @@ Rails.application.routes.draw do
     registrations: 'customers/registrations',
     sessions: 'customers/sessions',
   }
-  
+
 
   scope module: :public do
 
@@ -63,7 +62,7 @@ Rails.application.routes.draw do
       end
     end
 
- 
+
 
   #customers
    resources :customers, only:[:show, :edit, :update] do
@@ -71,20 +70,20 @@ Rails.application.routes.draw do
      get 'customers/leave' => 'customers#leave'
      patch 'customers/out' => 'customers#out'
      end
-     
-    
+
+
    end
-  
-  
-   
+
+
+
   #deliveries
   resources :deliveries, only:[:index, :create, :edit, :update, :destroy]
-     
-   
+
+
 
 
   end
-  
+
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
