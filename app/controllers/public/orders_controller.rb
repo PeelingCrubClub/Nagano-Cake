@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
      @order = Order.new
      @cart_item = CartItem.where(customer_id: current_customer.id)
      @customer = current_customer
+     @address_new = Delivery.new
    end
 
    def create
@@ -49,11 +50,16 @@ class Public::OrdersController < ApplicationController
         @order.delivery_address = @delivery.delivery_address
         @order.receiver_name = @delivery.address_name
      elsif  params[:order][:to_address] == "2" #新しいお届け先
-        address_new = current_customer.deliveries.new(address_params)
-        if address_new.save
+        @address_new = current_customer.deliveries.new()
+        @address_new.customer_id = current_customer.id
+        @address_new.delivery_postal_code = @order.shipping_postal_code
+        @address_new.delivery_address = @order.delivery_address
+        @address_new.address_name = @order.receiver_name
+        if @address_new.save == false
+          @cart_item = CartItem.where(customer_id: current_customer.id)
+          @customer = current_customer
+          render :new
         end
-     else
-       redirect_to new_order_path
      end
     @cart_items = current_customer.cart_items.all
    end
@@ -65,10 +71,6 @@ class Public::OrdersController < ApplicationController
 
   def order_params
   params.require(:order).permit(:customer_id, :shipping_fee, :total_price, :payment_method, :receiver_name, :shipping_postal_code, :delivery_address, :order_status)
-  end
-
-  def address_params
-    params.require(:order).permit(:postal_code, :address, :name )
   end
 
 end
