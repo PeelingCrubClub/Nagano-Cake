@@ -36,7 +36,7 @@ class Public::DeliveriesController < ApplicationController
 
   private
   def delivery_params
-      params.require(:delivery).permit(:last_name, :first_name, :delivery_postal_code, :address_name)
+      params.require(:delivery).permit(:last_name, :first_name, :delivery_postal_code, :address_name,:delivery_address)
   end
 end
 

@@ -7,24 +7,24 @@
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :delivery, "住所", class: "form-label col-sm-4" %>
+    <%= f.label :address_name, "住所", class: "form-label col-sm-4" %>
     
     <div class="col-sm-8">
       <%= f.text_area :address_name, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :address_name, "宛名", class: "form-label col-sm-4" %>
+    <%= f.label :delivery_address, "宛名", class: "form-label col-sm-4" %>
     <div class="col-sm-4">
-      <%= f.text_field :address_name, class: "form-control" %>
+      <%= f.text_field :delivery_address, class: "form-control" %>
 
     </div>
   </div>
   
   <div class="form-group row">
     <div class="col-sm-4 offset-sm-4">
-      <% if @delivery_address.id.nil? %>
-      <% if @delivery.id.nil? %>
+      <% if @delivery.customer_id.nil? %>
+      
         <%= f.submit "新規登録", class: "btn btn-success" %>
       <% else %>
         <%= f.submit "変更を保存する", class: "btn btn-success" %>

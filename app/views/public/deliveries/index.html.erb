@@ -17,6 +17,10 @@
         <div class="form-group row">
       		<%= f.text_field :address_name, class: "form-control", placeholder: "住所" %>
         </div>
+        
+        <div class="form-group row">
+      		<%= f.text_field :delivery_address, class: "form-control", placeholder: "宛名" %>
+        </div>
 
         <div class="row">
     		  <%= f.submit "登録する", class: "btn btn-primary btn-outline-danger mx-auto" %>
@@ -37,12 +41,13 @@
       </thead>
 
      <tbody>
-    <!--<% @deliveries.each do |delivery| %>-->
+    <% @deliveries.each do |delivery| %>
     <tr class="brown-border">
      	<td><%= delivery.delivery_postal_code %></td>
-     	<td><%= delivery.address %></td>
+     	<td><%= delivery.address_name %></td>
+     	<td><%= delivery.delivery_address %></td>
      	<td><%= link_to "編集する", edit_delivery_path(delivery),  class: "btn btn-sm btn-outline-danger" %>
-          <%= link_to "削除する", deliveries_path, method: :delete ,data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+          <%= link_to "削除する", delivery_path, method: :delete ,datsa: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
         </td>
      </tr>
   <% end %>
