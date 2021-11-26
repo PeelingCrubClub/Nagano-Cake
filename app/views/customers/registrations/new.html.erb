@@ -1,8 +1,12 @@
-<h2>Sign up</h2>
+<div class="container">
+  <%= render "shared/flash_message" %>
+  <div class="row">
+    <div class="col-md-10 col-lg-9 col-xl-8 mx-auto">
+      <h2 class="mb-4">新規会員登録</h2>
 
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
-  
+
    <div class="form-group">
         <%= f.label :フリガナ, class: "brown-border px-3" %>
         <div class="row">
@@ -10,7 +14,7 @@
           <%= f.text_field :first_name_kana, class: "form-control col-4"%>
         </div>
       </div>
-  
+
  <div class="form-group">
         <%= f.label :氏名, class: "brown-border px-3" %>
         <div class="row">
@@ -18,8 +22,8 @@
           <%= f.text_field :first_name, class: "form-control col-4"%>
         </div>
       </div>
-      
-      
+
+
       <div class="form-group">
         <%= f.label :郵便番号, class: "brown-border px-3" %>
         <%= f.text_field :delivery_postal_code, class: "form-control offset-1 col-8"%>
@@ -29,7 +33,7 @@
         <%= f.label :住所, class: "brown-border px-3" %>
         <%= f.text_field :delivery_address, class: "form-control offset-1 col-8"%>
       </div>
-     
+
      <div class="form-group">
         <%= f.label :電話番号, class: "brown-border px-3" %>
         <%= f.text_field :tel, class: "form-control offset-1 col-8"%>
