@@ -1,26 +1,29 @@
 <%= form_with model: delivery, local:true do |f| %>
   <%= render "devise/shared/error_messages", resource: @delivery %>
   <div class="form-group row">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)", class: "form-label col-sm-4" %>
+    <%= f.label :delivery_postal_code, "郵便番号(ハイフンなし)", class: "form-label col-sm-4" %>
     <div class="col-sm-4">
-      <%= f.text_field :postal_code,class: "form-control" %>
+      <%= f.text_field :delivery_postal_code,class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :delivery, "住所", class: "form-label col-sm-4" %>
+    <%= f.label :delivery_address, "住所", class: "form-label col-sm-4" %>
     
     <div class="col-sm-8">
       <%= f.text_area :address_name, class: "form-control" %>
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :delivery_name, "宛名", class: "form-label col-sm-4" %>
+    <%= f.label :address_name, "宛名", class: "form-label col-sm-4" %>
     <div class="col-sm-4">
-      <%= f.text_field :delivery_name, class: "form-control" %>
+      <%= f.text_field :address_name, class: "form-control" %>
+
     </div>
   </div>
+  
   <div class="form-group row">
     <div class="col-sm-4 offset-sm-4">
+      <% if @delivery_address.id.nil? %>
       <% if @delivery.id.nil? %>
         <%= f.submit "新規登録", class: "btn btn-success" %>
       <% else %>
