@@ -9,4 +9,18 @@ class Customer < ApplicationRecord
   has_many :cart_items, dependent: :destroy
   
   validates :is_deleted,inclusion:{in: [true, false]}
+  
+  validates :last_name, presence: true
+  validates :first_name , presence: true
+  validates :first_name_kana , presence: true
+  validates :first_name_kana , presence: true
+  validates :postal_code  , presence: true
+  validates :address   , presence: true
+  validates :tel   , presence: true
+  
+  
+  
+  
+  
+  
 end

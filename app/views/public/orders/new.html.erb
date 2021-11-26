@@ -3,6 +3,15 @@
   <div class="row">
     <div class="col">
       <div class="validates mb-5">
+<<<<<<< HEAD
+        <% if @address_new.errors.any? %>
+          <p>-<%= @address_new.errors.count %>箇所の入力漏れがあります-
+          <% @address_new.errors.full_messages.each do |message| %><br>
+            ・<%= message %></p>
+          <% end %>
+        <% end %>
+=======
+>>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
       </div>
       <h2>注文情報入力</h2>
       <%= form_with model: @order,url: orders_confirm_orders_path, method: :post, local: true do |f| %>

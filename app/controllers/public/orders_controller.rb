@@ -49,16 +49,10 @@ class Public::OrdersController < ApplicationController
         @order.shipping_postal_code = @delivery.delivery_postal_code
         @order.delivery_address = @delivery.delivery_address
         @order.receiver_name = @delivery.address_name
+        
      elsif  params[:order][:to_address] == "2" #新しいお届け先
-        @address_new = current_customer.deliveries.new
-        @address_new.customer_id = current_customer.id
-        @address_new.delivery_postal_code = @order.shipping_postal_code
-        @address_new.delivery_address = @order.delivery_address
-        @address_new.address_name = @order.receiver_name
         if @address_new.save(order_params)
         end
-     else
-       redirect_to new_order_path
      end
     @cart_items = current_customer.cart_items.all
    end

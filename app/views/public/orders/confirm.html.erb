@@ -49,7 +49,11 @@
               </tr>
               <tr>
                 <th>商品合計</th>
+<<<<<<< HEAD
+                <td><%= @sum.floor %></td>
+=======
                 <td><%= @sum.floor%></td>
+>>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
               </tr>
               <tr>
                 <th>請求金額</th>
@@ -72,7 +76,15 @@
       <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :payment_method, value: @order.payment_method  %>
         <%= f.hidden_field :shipping_fee, value: 800  %>
+<<<<<<< HEAD
+<<<<<<< HEAD
         <%= f.hidden_field :total_price, value: @total %>
+=======
+        <%= f.hidden_field :total_price, value:  @order.total_price  %>
+>>>>>>> d211a7186b235c043f3eef9d51a6e775e1dc0d27
+=======
+        <%= f.hidden_field :total_price, value: @total %>
+>>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
         <%= f.hidden_field :receiver_name, value: @order.receiver_name %>
         <%= f.hidden_field :delivery_address, value: @order.delivery_address %>
         <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code %>
