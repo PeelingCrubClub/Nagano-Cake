@@ -17,7 +17,6 @@
     <div class='col-md-9 offset-md-1'>
       <div class='row'>
         <% @items.each do |item| %>
-          <% if item.item_status == true %>
             <div class='col-4'>
               <ul>
                 <li>
@@ -29,7 +28,7 @@
                 <li><%= item.add_tax_price.to_s(:delimited) %></li>
               </ul>
             </div>
-          <% end %>
+
         <% end %>
       </div>
     </div>
