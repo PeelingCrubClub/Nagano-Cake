@@ -1,96 +1,36 @@
-<div class="container">
-  <div class="row mb-5">
-    <div class="col mb-3">
-      <h3>注文履歴詳細</h3>
-      <div class="row">
-        <div class="col-9">
-          <p>注文情報</p>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th>注文日</th>
-                <td>
-                  <%= @order.created_at.strftime('%Y年%m月%d日') %>
-                </td>
-              </tr>
-              <tr>
-                <th>配送先</th>
-                <td>
-                  〒<%= @order.shipping_postal_code %><br>
-                  <%= @order.delivery_address %><br>
-                  <%= @order.receiver_name %> 様
-                </td>
-              </tr>
-              <tr>
-                <th>支払方法</th>
-                <td>
-                  <%= @order.payment_method %>
-                </td>
-              </tr>
-              <tr>
-                <th>ステータス</th>
-                <td>
-                  <%= @order.order_status_i18n  %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-3">
-          <p>請求情報</p>
-          <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th>商品合計</th>
-                <td>
-                  ¥<%= (@order.total_price - @order.shipping_fee).floor.to_s(:delimited) %>
-                </td>
-              </tr>
-              <tr>
-                <th>配送料</th>
-                <td>
-                  ¥<%= @order.shipping_fee %>
-                </td>
-              </tr>
-              <tr>
-                <th>ご請求額</th>
-                <td>
-                  ¥<%= @order.total_price.floor.to_s(:delimited) %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <div class="row mb-5">
-        <p>注文内容</p>
-        <table class="table table-bordered">
-          <tbody>
-            <tr>
-              <th>商品名</th>
-              <th>単価（税込）</th>
-              <th>個数</th>
-              <th>小計</th>
-            </tr>
-            <% @order.order_items.each do |order_item| %>
-            <tr>
-              <td>
-                <%= order_item.item.item_name %>
-              </td>
-              <td>
-                ¥<%= order_item.prices.floor.to_s(:delimited) %>
-              </td>
-              <td>
-                <%= order_item.number_of_piaces %>
-              </td>
-              <td>
-                ¥<%= (order_item.piaces * order_item.number_of_piaces).floor.to_s(:delimited) %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-    </div>
+<div class="row">
+  <%= render "shared/flash_message" %>
+  <div class="col-9">
+    <p>注文情報</p>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th>注文日</th>
+          <td>
+            <%= @order.created_at.strftime('%Y年%m月%d日') %>
+          </td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td>
+            〒<%= @order.shipping_postal_code %><br>
+            <%= @order.delivery_address %><br>
+            <%= @order receiver_name %> 様
+          </td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td>
+            <%= @order.payment_method %>
+          </td>
+        </tr>
+        <tr>
+          <th>ステータス</th>
+          <td>
+            <%= @order.order_status_i18n  %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

@@ -12,6 +12,7 @@ class Public::DeliveriesController < ApplicationController
     @delivery = Delivery.new(delivery_params)
     @delivery.customer_id = current_customer.id
     if @delivery.save
+      flash[:notice] = "配送先を登録しました"
        redirect_to deliveries_path
     else
        @delivery_new = Delivery.new
@@ -27,8 +28,12 @@ class Public::DeliveriesController < ApplicationController
 
   def update
     delivery = Delivery.find(params[:id])
-    delivery.update(delivery_params)
+    if delivery.update(delivery_params)
+      flash[:notice] = "配送先情報を変更しました"
     redirect_to deliveries_path
+    else
+      render :edit
+    end
   end
 
   def destroy

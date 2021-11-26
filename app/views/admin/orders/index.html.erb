@@ -1,4 +1,5 @@
 <div class="container-fluid">
+  <%= render "shared/flash_message" %>
       <h2 class="mx-9 my-3">注文履歴一覧</h2>
        <p style="font-size:1.em;">本日の注文数 <%= link_to @count, admin_orders_path(order: 'today') %>件</p>
 
