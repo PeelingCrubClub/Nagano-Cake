@@ -1,5 +1,5 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row mt-4 mb-2'>
     <div class='col-2 px-0 bg-light px-2 py-2'>
       <p class='genre'>ジャンル検索</p>
       <hr class='hr0'>
@@ -12,7 +12,7 @@
     <div class='col-md-9 offset-md-1'>
       <div class='row'>
         <div class='col'>
-          <%= attachment_image_tag @item, :image, :fill, 100, 100, fallback: "no-image.jpg" %>
+          <%= attachment_image_tag @item, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
         </div>
         <div class='col'>
           <p class='cake_name'><%= @item.item_name %></p>
