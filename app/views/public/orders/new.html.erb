@@ -1,4 +1,7 @@
-<%= render "shared/flash_message" %>
+<div class="container" style="margin-bottom: 400px;">
+  <%= render "shared/flash_message" %>
+  <div class="row">
+    <div class="col">
 <h2>注文情報入力</h2>
   <%= form_with model: @order,url: orders_confirm_orders_path, method: :post, local: true do |f| %>
     <div class="mt-5">

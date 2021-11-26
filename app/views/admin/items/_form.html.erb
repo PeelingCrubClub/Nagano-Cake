@@ -1,39 +1,66 @@
 <%= form_with model: [:admin, item], local: true do |f| %>
 
  <div class="form-group row">
-   <%= f.label :image, "商品画像" %>
-   <%= f.attachment_field :image %>
+    <%= f.label :image, "商品画像", class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-8">
+      <div class="custom-file">
+        <%= f.attachment_field :image, class: "custom-file-input" %>
+        <%= f.label :image, "商品画像を選択", class: "custom-file-label" %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :item_name, "商品名" %>
-    <%= f.text_field :item_name, placeholder: "商品名" %>
+    <%= f.label :item_name, "商品名", class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-8">
+    <%= f.text_field :item_name, placeholder: "商品名",
+        class: "form-control" %>
+    </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :detail, "商品説明" %>
-    <%= f.text_area :detail, placeholder: "ここに説明文を記述します" %>
+    <%= f.label :detail, "商品説明", class: "col-sm-4 col-form-label" %>
+     <div class="col-sm-8">
+    <%= f.text_area :detail, placeholder: "ここに説明文を記述します",
+        class: "form-control" %>
+    </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :genre_id, "ジャンル" %>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"} %>
+    <%= f.label :genre_id, "ジャンル", class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-8">
+    <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"}, {class: "form-control"} %>
+    </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :price, "税抜き価格" %>
-    <%= f.text_field :price, placeholder: "商品の税別価格を記述して下さい" %>
+    <%= f.label :price, "税抜き価格", class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-8">
+    <%= f.text_field :price, placeholder: "商品の税別価格を記述して下さい", class: "form-control" %>
+    </div>
   </div>
 
   <div class="form-group row">
-    <%= f.label :item_status, '販売ステータス' %>
-    <%= f.select :item_status, {
-      "販売中": true,
-      "売り切れ": false
-    } %>
+    <%= f.label :item_status, '販売ステータス', class: "col-sm-4 col-form-label" %>
+    <div class="col-sm-8">
+      <div class="form-check form-check-inline">
+         <%= f.radio_button :item_statu, true, class: "form-check-input" %>
+          <%= f.label :item_statu, "販売中", value: true, class: "form-check-label" %>
+       </div>
+        <div class="form-check form-check-inline">
+          <%= f.radio_button :item_status, false, class: "form-check-input" %>
+          <%= f.label :item_status, "販売停止中", value: false, class: "form-check-label" %>
+        </div>
+      </div>
   </div>
 
-  <div class="form-group row">
-     <%= f.submit "新規登録", class:"btn btn-success" %>
-  </div>
+  <div class="text-center mt-4">
+      <%= f.submit "変更を保存", class: "btn btn-success" %>
+    </div>
 <% end %>
+
+<script type="text/javascript">
+    $('.custom-file input').change(function (e) {
+        $('.custom-file-label').html(e.target.files[0].name);
+    });
+</script>
