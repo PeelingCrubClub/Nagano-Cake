@@ -14,21 +14,11 @@
     </div>
   </div>
   <div class="form-group row">
-    <%= f.label :address_name, "宛名", class: "form-label col-sm-4" %>
+    <%= f.label :, "宛名", class: "form-label col-sm-4" %>
     <div class="col-sm-4">
       <%= f.text_field :address_name, class: "form-control" %>
 
     </div>
   </div>
   
-  <div class="form-group row">
-    <div class="col-sm-4 offset-sm-4">
-      <% if @delivery_address.id.nil? %>
-      <% if @delivery.id.nil? %>
-        <%= f.submit "新規登録", class: "btn btn-success" %>
-      <% else %>
-        <%= f.submit "変更を保存する", class: "btn btn-success" %>
-      <% end %>
-    </div>
-  </div>
 <% end %>

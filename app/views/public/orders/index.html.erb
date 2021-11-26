@@ -42,11 +42,14 @@
           <% end %>
         </tbody>
       </table>
-      <div class="pagination"><%= paginate @orders %></div>
+
     </div>
   <% else %>
     <div class="text-center">
       <h2>※注文履歴がありません</h2>
     </div>
   <% end %>
+
+  <%= paginate @orders %>
 </div>
+

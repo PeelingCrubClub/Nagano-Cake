@@ -1,8 +1,12 @@
 class Public::DeliveriesController < ApplicationController
-  
+
   def index
-    @delivery_new = Delivery.new
-    @deliveries = current_customer.deliveries
+    @delivery_new = Delivery.new#なんのための_new?
+    @deliveries = current_customer.deliveries.page(params[:page]).per(5)
+    
+    #@customer = Customer.find(params[:id])
+    #@deliveries = current_customer.deliveries.page(params[:page]).reverse_order.per(5)
+    
   end
 
   def create
@@ -39,4 +43,5 @@ class Public::DeliveriesController < ApplicationController
       params.require(:delivery).permit(:last_name, :first_name, :delivery_postal_code, :address_name)
   end
 end
+
 

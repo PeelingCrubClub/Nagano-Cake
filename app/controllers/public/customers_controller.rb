@@ -12,7 +12,7 @@ class Public::CustomersController < ApplicationController
 
    def update
 
-   current_customer.update(customer_params)
+  
    if current_customer.update(customer_params)
     redirect_to customer_path(current_customer.id), notice: "You have updated customer successfully."
 
