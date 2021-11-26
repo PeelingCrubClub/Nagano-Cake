@@ -1,20 +1,24 @@
+<%= render "shared/flash_message" %>
 <div class="container" style="margin-bottom: 400px;">
   <div class="row">
     <div class="col">
       <div class="validates mb-5">
+<<<<<<< HEAD
         <% if @address_new.errors.any? %>
           <p>-<%= @address_new.errors.count %>箇所の入力漏れがあります-
           <% @address_new.errors.full_messages.each do |message| %><br>
             ・<%= message %></p>
           <% end %>
         <% end %>
+=======
+>>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
       </div>
       <h2>注文情報入力</h2>
       <%= form_with model: @order,url: orders_confirm_orders_path, method: :post, local: true do |f| %>
         <div class="mt-5">
           <p>支払い方法</p>
           <%= f.radio_button :payment_method, :クレジットカード, checked: true  %>
-          <%= f.label :payment_method, :クレジットカード, value: :クレジットカード %>
+          <%= f.label :payment_method, :クレジットカード, value: :クレジットカード %><br>
           <%= f.radio_button :payment_method, :銀行振込 %>
           <%= f.label :payment_method, :銀行振込, value: :銀行振込 %>
         </div>

@@ -71,6 +71,10 @@ gem 'font-awesome-sass', '~> 5.13'
 #FontAwsome
 gem 'font-awesome-sass', '~> 5.13'
 
+#devise日本語化
+gem 'devise-i18n'
+
+
 #デバック
 gem 'pry-rails'
 gem 'pry-byebug'

@@ -73,6 +73,7 @@
               <th>小計</th>
             </tr>
             <% @order.order_items.each do |order_item| %>
+<<<<<<< HEAD
             <tr>
               <td>
                 <%= order_item.item.item_name %>
@@ -87,6 +88,22 @@
                 ¥<%= (order_item.tax_price * order_item.item.add_tax_price).floor.to_s(:delimited) %>
               </td>
             </tr>
+=======
+              <tr>
+                <td>
+                  <%= order_item.item.item_name %>
+                </td>
+                <td>
+                  ¥<%= (order_item.item.price * 1.1).floor %>
+                </td>
+                <td>
+                  <%= order_item.number_of_piaces %>
+                </td>
+                <td>
+                  ¥<%= (order_item.number_of_piaces * order_item.item.price * 1.1).floor %>
+                </td>
+              </tr>
+>>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
             <% end %>
           </tbody>
         </table>
