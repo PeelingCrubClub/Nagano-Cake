@@ -43,3 +43,50 @@ body{
     background-image: url(aso-tocake.jpg);
   }
 }
+
+.footerFixed{
+    min-height: 100vh; /* ←コンテンツの高さの最小値＝ブラウザの高さに指定 */
+    position: relative;/* ←相対位置 */
+    padding-bottom: 60px; /* ←フッターの高さを指定 */
+    box-sizing: border-box;
+    /* ↑ヘッダーやフッターを含むすべての要素の高さ＝min-height:100vhになるように指定 */
+}
+
+footer{
+    position: absolute;/* ←絶対位置 */
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.fa:before{
+  // display: block;
+   display: inline;
+   text-decoration: none;
+
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+/*ページネーション自体のデザイン*/
+.pagination>li>a {
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+.pagination {
+  justify-content: center;
+}

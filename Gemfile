@@ -52,6 +52,7 @@ gem 'devise'
 
 #ステータス設定用
 gem 'enum_help'
+gem 'rails-i18n'
 
 #画像の投稿機能
 gem "refile", require: "refile/rails", github: 'manfe/refile'

@@ -72,10 +72,10 @@
       <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :payment_method, value: @order.payment_method  %>
         <%= f.hidden_field :shipping_fee, value: 800  %>
-        <%= f.hidden_field :total_price, value: @total_price  %>
-        <%= f.hidden_field :receiver_name, value: @receiver_name %>
-        <%= f.hidden_field :delivery_address, value: @delivery_address %>
-        <%= f.hidden_field :shipping_postal_code, value: @shipping_postal_code %>
+        <%= f.hidden_field :total_price, value:  @order.total_price  %>
+        <%= f.hidden_field :receiver_name, value: @order.receiver_name %>
+        <%= f.hidden_field :delivery_address, value: @order.delivery_address %>
+        <%= f.hidden_field :shipping_postal_code, value: @order.shipping_postal_code %>
         <div class="text-center mt-5">
           <%= f.submit "注文を確定する" %>
         </div>

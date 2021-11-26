@@ -1,15 +1,6 @@
 <% unless admin_signed_in? %>
   <%= render "public/shared/header" %>
   <div class="search-form">
-
-    <%= form_with url: search_admin_items_path, method: :get, local: true do |f| %>
-    <%= f.text_field :keyword %>
-    <%= f.submit "検索" %>
-    <% end %>
-  <%#= form_with url: search_path, method: :get, local: true do |f| %>
-    <%#= f.text_field :keyword, value: @keyword %>
-    <%#= f.submit "検索" %>
-  <%# end %>
   </div>
 
 
@@ -51,10 +42,6 @@
     <%= f.text_field :keyword %>
     <%= f.submit "検索" %>
     <% end %>
-  <%#= form_with url: search_path, method: :get, local: true do |f| %>
-    <%#= f.text_field :keyword, value: @keyword %>
-    <%#= f.submit "検索" %>
-  <%# end %>
   </div>
 </div>
 </nav>
