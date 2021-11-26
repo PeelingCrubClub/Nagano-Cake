@@ -33,7 +33,8 @@ class Public::DeliveriesController < ApplicationController
   def destroy
     delivery = Delivery.find(params[:id])
     delivery.destroy
-    redirect_to deliveries_path
+    # redirect_to deliveries_path
+    redirect_to action: 'index'
   end
 
   private
