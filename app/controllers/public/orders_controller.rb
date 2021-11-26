@@ -27,7 +27,7 @@ class Public::OrdersController < ApplicationController
    end
 
    def index
-     @orders = current_customer.orders.page(params[:page]).reverse_order.per(5)
+     @orders = current_customer.orders.page(params[:page]).reverse_order.per(10)
    end
 
    def show
@@ -39,11 +39,11 @@ class Public::OrdersController < ApplicationController
    def confirm
      @order = Order.new(order_params)
      @order.shipping_fee = 800 #送料の設定
-     
+
      #合計金額（田上追加）
-     
-     
-     
+
+
+
      if params[:order][:to_address] == "0"
         @order.shipping_postal_code = current_customer.postal_code
         @order.delivery_address = current_customer.address

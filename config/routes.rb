@@ -62,23 +62,16 @@ Rails.application.routes.draw do
       end
     end
 
-
-
   #customers
    resources :customers, only:[:show, :edit, :update] do
      collection do
      get 'customers/leave' => 'customers#leave'
      patch 'customers/out' => 'customers#out'
      end
-
-
-   end
-
-
-
-  #deliveries
-  resources :deliveries, only:[:index, :create, :edit, :update, :destroy]
-
+  end
+  
+   #deliveries
+    resources :deliveries, only:[:index, :create, :edit, :update, :destroy]
 
 
 
