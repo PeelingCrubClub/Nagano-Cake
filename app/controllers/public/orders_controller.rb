@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
      @order = Order.new
      @cart_item = CartItem.where(customer_id: current_customer.id)
      @customer = current_customer
+     @address_new = Delivery.new
    end
 
    def create
@@ -39,11 +40,6 @@ class Public::OrdersController < ApplicationController
    def confirm
      @order = Order.new(order_params)
      @order.shipping_fee = 800 #送料の設定
-
-     #合計金額（田上追加）
-
-
-
      if params[:order][:to_address] == "0"
         @order.shipping_postal_code = current_customer.postal_code
         @order.delivery_address = current_customer.address
@@ -54,13 +50,12 @@ class Public::OrdersController < ApplicationController
         @order.delivery_address = @delivery.delivery_address
         @order.receiver_name = @delivery.address_name
      elsif  params[:order][:to_address] == "2" #新しいお届け先
-        @order.payment_method = params[:order][:payment_method]
-        @order.total_price = params[:order][:total_price]
-        @order.receiver_name = params[:order][:receiver_name]
-        @order.delivery_address = params[:order][:delivery_address]
-        @order.shipping_postal_code = params[:order][:shipping_postal_code]
-        #address_new = current_customer.deliveries.new(address_params)
-        if @order.save(order_params)
+        @address_new = current_customer.deliveries.new
+        @address_new.customer_id = current_customer.id
+        @address_new.delivery_postal_code = @order.shipping_postal_code
+        @address_new.delivery_address = @order.delivery_address
+        @address_new.address_name = @order.receiver_name
+        if @address_new.save(order_params)
         end
      else
        redirect_to new_order_path
@@ -75,10 +70,6 @@ class Public::OrdersController < ApplicationController
 
   def order_params
   params.require(:order).permit(:customer_id, :shipping_fee, :total_price, :payment_method, :receiver_name, :shipping_postal_code, :delivery_address, :order_status)
-  end
-
-  def address_params
-    params.require(:order).permit(:postal_code, :address, :name )
   end
 
 end
