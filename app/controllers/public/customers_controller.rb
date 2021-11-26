@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
 
    current_customer.update(customer_params)
    if current_customer.update(customer_params)
-    redirect_to customer_path(current_customer.id), notice: "会員情報を変更しました"
+    redirect_to customer_path(current_customer.id), notice: "You have updated customer successfully."
 
    else
 
@@ -35,7 +35,7 @@ class Public::CustomersController < ApplicationController
        if @customer.update(is_deleted: true)
           sign_out current_customer #Uコントローラーから直接サインアウト（devise公式)
        end
-       redirect_to root_path, alert: "退会しました"
+       redirect_to root_path
    end
 
   private
