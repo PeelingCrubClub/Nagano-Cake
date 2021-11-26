@@ -6,7 +6,7 @@
       <!--カート内に商品が入っていれば表示-->
       <% if @customer_cart_items.exists? %>
         <div class="text-right mb-3">
-          <%= link_to "カートを空にする", cart_items_destroy_all_cart_items_path, method: :delete %>
+          <%= link_to "カートを空にする", cart_items_destroy_all_cart_items_path, method: :delete, class: "btn", style: "background-color: #333333; color: white;" %>
         </div>
         <table class="table">
           <thead>
@@ -37,7 +37,7 @@
                   <%= f.select :pieces,[[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]],{inclued_blank: "個数選択"} %>
                   <%= f.hidden_field :customer_id, :value => current_customer.id %>
                   <%= f.hidden_field :item_id, :value => cart_item.item.id %>
-                  <%= f.submit "更新" %>
+                  <%= f.submit "更新", class: "btn",style: "background-color: #333333; color: white;" %>
                 <% end %>
               </td>
               <td>
@@ -48,7 +48,7 @@
                 <!--合計金額表示記述-->
                 <% @sum += @total %>
               <td>
-                <%= link_to "削除する", cart_item_path(cart_item), method: :delete %>
+                <%= link_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn", style: "background-color: #333333; color: white;" %>
               </td>
             </tr>
             <% end %>
@@ -57,14 +57,14 @@
         <table align="right">
           <tbody class="table table-bordered" style="font-size: 20px;">
             <th>合計金額</th>
-            <td><%= @sum.floor.to_s(:delimited) %></td>
+            <td>¥<%= @sum.floor.to_s(:delimited) %></td>
           </tbody>
         </table>
         <div>
-          <%= link_to "買い物を続ける", items_path %>
+          <%= link_to "買い物を続ける", items_path, class: "btn mt-5", style: "background-color: #6599cc; color: white;" %>
         </div>
         <div class="text-center">
-          <%= link_to "情報入力画面に進む", new_order_path %>
+          <%= link_to "情報入力画面に進む", new_order_path, class: "btn mt-3", style: "background-color: #5cb85c; color: white;" %>
         </div>
       <!--カート内に商品が入っていなければ表示-->
       <% else %>
