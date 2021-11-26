@@ -1,21 +1,15 @@
 class Public::DeliveriesController < ApplicationController
 
   def index
-<<<<<<< HEAD
-    @delivery_new = Delivery.new#なんのための_new?
+
+    @delivery_new = Delivery.new
     @deliveries = current_customer.deliveries.page(params[:page]).per(5)
     
     #@customer = Customer.find(params[:id])
     #@deliveries = current_customer.deliveries.page(params[:page]).reverse_order.per(5)
     
-=======
-    @delivery_new = Delivery.new #なんのための_new?
-    @deliveries = current_customer.deliveries.page(params[:page]).per(5)
-
-    # @customer = Customer.find(params[:id])
-    # @deliveries = current_customer.deliveries.page(params[:page]).reverse_order.per(5)
->>>>>>> 119c8e6877450a89ade3066da9ebc53b4c4cbb94
   end
+   
 
   def create
     @delivery = Delivery.new(delivery_params)
