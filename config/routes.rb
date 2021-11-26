@@ -38,6 +38,7 @@ Rails.application.routes.draw do
   }
 # devise_for :customers, module: "customers"
 
+
   scope module: :public do
 
   #homes
