@@ -1,4 +1,5 @@
 class Public::CartItemsController < ApplicationController
+  before_action :move_to_signed_in 
 
  def index
   @cart_items = CartItem.all
@@ -37,6 +38,13 @@ class Public::CartItemsController < ApplicationController
     redirect_to request.referer, alert: "カート内を全て削除しました"
   end
  end
+
+  def move_to_signed_in
+    unless customer_signed_in?
+      #サインインしていないユーザーはログインページが表示される
+      redirect_to  '/customers/sign_in'
+    end
+  end
 
  private
 

@@ -72,7 +72,7 @@
      	<td><%= delivery.address_name %></td>
 
      	<td><%= link_to "編集する", edit_delivery_path(delivery),  class: "btn btn-sm btn-outline-danger" %>
-          <%= link_to "削除する", deliveries_path, method: :delete ,data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
+          <%= link_to "削除する", delivery_path(delivery), method: :delete ,data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-outline-danger" %>
         </td>
      </tr>
   <% end %>
