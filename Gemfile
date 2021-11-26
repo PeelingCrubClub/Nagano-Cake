@@ -52,6 +52,7 @@ gem 'devise'
 
 #ステータス設定用
 gem 'enum_help'
+gem 'rails-i18n'
 
 #画像の投稿機能
 gem "refile", require: "refile/rails", github: 'manfe/refile'
@@ -72,3 +73,6 @@ gem 'font-awesome-sass', '~> 5.13'
 #デバック
 gem 'pry-rails'
 gem 'pry-byebug'
+
+#非同期通信
+gem 'jquery-rails'

@@ -13,6 +13,8 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+
+
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
@@ -20,6 +22,10 @@
 //= require jquery3
 //= require popper
 //= require bootstrap
+
+//= require jquery
+//= require rails-ujs
+
 $(document).ready(function () {
   $("#images").skippr({
     transition : 'fade',
