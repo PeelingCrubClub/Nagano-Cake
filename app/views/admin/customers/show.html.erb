@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
       <h2><span class="badge mb-3"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員情報</h2>
-       
+
        <table class="table table-borderless">
          <tr>
            <th bgcolor="#fce4ec">会員ID</th>
@@ -11,11 +11,11 @@
           </tr>
           <tr>
             <th bgcolor="#fce4ec">氏名</th>
-            <td bgcolor="#fcf7f7"><%= @customer.first_name %><%= @customer.last_name %> </td>
+            <td bgcolor="#fcf7f7"><%= @customer.last_name %><%= @customer.first_name %> </td>
           </tr>
           <tr>
             <th bgcolor="#fce4ec">フリガナ</th>
-            <td bgcolor="#fcf7f7"><%= @customer.first_name_kana %> <%= @customer.last_name_kana %> </td>
+            <td bgcolor="#fcf7f7"> <%= @customer.last_name_kana %><%= @customer.first_name_kana %> </td>
           </tr>
           <tr>
             <th bgcolor="#fce4ec">郵便番号</th>
