@@ -26,7 +26,6 @@ class Public::CustomersController < ApplicationController
 
 
    def leave
-
     @customer = current_customer
    end
 
