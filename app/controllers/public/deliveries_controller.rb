@@ -49,5 +49,3 @@ class Public::DeliveriesController < ApplicationController
   end
 
 end
-
-

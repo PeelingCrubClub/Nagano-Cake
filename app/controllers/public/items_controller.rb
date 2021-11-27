@@ -19,5 +19,5 @@ class Public::ItemsController < ApplicationController
       redirect_to  '/customers/sign_in'
     end
   end
-
 end
+
