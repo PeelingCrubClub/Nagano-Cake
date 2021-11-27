@@ -8,28 +8,28 @@
           <table class="table table-bordered">
             <tbody>
               <tr>
-                <th>注文日</th>
-                <td>
+                <th bgcolor="#fce4ec">注文日</th>
+                <td bgcolor="#fcf7f7">
                   <%= @order.created_at.strftime('%Y年%m月%d日') %>
                 </td>
               </tr>
               <tr>
-                <th>配送先</th>
-                <td>
+                <th bgcolor="#fce4ec">配送先</th>
+                <td bgcolor="#fcf7f7">
                   〒<%= @order.shipping_postal_code %><br>
                   <%= @order.delivery_address %><br>
                   <%= @order.receiver_name %> 様
                 </td>
               </tr>
               <tr>
-                <th>支払方法</th>
-                <td>
+                <th bgcolor="#fce4ec">支払方法</th>
+                <td bgcolor="#fcf7f7">
                   <%= @order.payment_method %>
                 </td>
               </tr>
               <tr>
-                <th>ステータス</th>
-                <td>
+                <th bgcolor="#fce4ec">ステータス</th>
+                <td bgcolor="#fcf7f7">
                   <%= @order.order_status_i18n  %>
                 </td>
               </tr>
@@ -41,20 +41,20 @@
           <table class="table table-bordered">
             <tbody>
               <tr>
-                <th>商品合計</th>
-                <td>
+                <th bgcolor="#fce4ec">商品合計</th>
+                <td bgcolor="#fcf7f7">
                   ¥<%= (@order.total_price - @order.shipping_fee).floor.to_s(:delimited) %>
                 </td>
               </tr>
               <tr>
-                <th>配送料</th>
-                <td>
+                <th bgcolor="#fce4ec">配送料</th>
+                <td bgcolor="#fcf7f7">
                   ¥<%= @order.shipping_fee %>
                 </td>
               </tr>
               <tr>
-                <th>ご請求額</th>
-                <td>
+                <th bgcolor="#fce4ec">ご請求額</th>
+                <td bgcolor="#fcf7f7">
                   ¥<%= @order.total_price %>
                 </td>
               </tr>
@@ -66,14 +66,14 @@
         <p>注文内容</p>
         <table class="table table-bordered">
           <tbody>
-            <tr>
+            <tr bgcolor="#fce4ec">
               <th>商品名</th>
               <th>単価（税込）</th>
               <th>個数</th>
               <th>小計</th>
             </tr>
             <% @order.order_items.each do |order_item| %>
-              <tr>
+              <tr bgcolor="#fcf7f7">
                 <td>
                   <%= order_item.item.item_name %>
                 </td>
