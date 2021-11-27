@@ -5,17 +5,17 @@
  <div class="row justify-content-center">
   <table class="table table-borderless">
     <tr class="form-group">
-      <th><%= f.label :delivery_postal_code, "郵便番号(ハイフンなし)", class: "form-label col-sm-4" %></th>
+      <th><%= f.label :delivery_postal_code, "郵便番号(ハイフンなし)", class: "form-label" %></th>
       <td><%= f.text_field :delivery_postal_code,class: "form-control" %></td>
     </tr>
     
        <tr class="form-group">
-      <th><%= f.label :delivery_address, "住所", class: "form-label col-sm-4" %></th>
+      <th><%= f.label :delivery_address, "住所", class: "form-label" %></th>
       <td><%= f.text_area :delivery_address, class: "form-control" %></td>
     </tr>
     
        <tr class="form-group">
-      <th><%= f.label :address_name, "宛名", class: "form-label col-sm-4" %></th>
+      <th><%= f.label :address_name, "宛名", class: "form-label" %></th>
       <td><%= f.text_field :address_name, class: "form-control" %></td>
     </tr>
   </table>
