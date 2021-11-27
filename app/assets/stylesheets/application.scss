@@ -19,6 +19,10 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
+
+*{font-family: 'Zen Maru Gothic', sans-serif;}
+
 body{
   background-image: image-url('background.png');
   background-repeat: no-repeat;
