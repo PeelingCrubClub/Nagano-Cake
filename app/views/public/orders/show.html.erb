@@ -55,7 +55,7 @@
               <tr>
                 <th>ご請求額</th>
                 <td>
-                  ¥<%= @order.total_price.floor.to_s(:delimited) %>
+                  ¥<%= @order.total_price %>
                 </td>
               </tr>
             </tbody>
@@ -73,20 +73,20 @@
               <th>小計</th>
             </tr>
             <% @order.order_items.each do |order_item| %>
-            <tr>
-              <td>
-                <%= order_item.item.item_name %>
-              </td>
-              <td>
-                ¥<%= order_item.prices.floor.to_s(:delimited) %>
-              </td>
-              <td>
-                <%= order_item.number_of_piaces %>
-              </td>
-              <td>
-                ¥<%= (order_item.piaces * order_item.number_of_piaces).floor.to_s(:delimited) %>
-              </td>
-            </tr>
+              <tr>
+                <td>
+                  <%= order_item.item.item_name %>
+                </td>
+                <td>
+                  ¥<%= (order_item.item.price * 1.1).floor %>
+                </td>
+                <td>
+                  <%= order_item.number_of_piaces %>
+                </td>
+                <td>
+                  ¥<%= (order_item.number_of_piaces * order_item.item.price * 1.1).floor %>
+                </td>
+              </tr>
             <% end %>
           </tbody>
         </table>

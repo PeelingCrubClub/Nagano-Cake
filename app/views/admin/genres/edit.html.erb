@@ -1,6 +1,13 @@
-<h2>ジャンル編集</h2>
-<%= form_with model: [:admin, @genres], local: true, class: "form-inline" do |f| %>
-  <%= f.label :name, "ジャンル" %>
-  <%= f.text_field :name %>
-  <%= f.submit '変更を保存' %>
-<% end %>
+<div class="container">
+  <%= render "shared/flash_message" %>
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-4">ジャンル編集</h2>
+      <%= form_with model: [:admin, @genres], local: true, class: "form-inline" do |f| %>
+      <%= f.label :name, "ジャンル", class: "mb-2 mr-sm-2"%>
+      <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control mb-2 mr-sm-2"%>
+      <%= f.submit '変更を保存', class:"btn btn-success mb-2"  %>
+  <% end %>
+  </div>
+  </div>
+</div>

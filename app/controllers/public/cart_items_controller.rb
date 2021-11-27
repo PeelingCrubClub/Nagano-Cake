@@ -1,5 +1,7 @@
 class Public::CartItemsController < ApplicationController
+
   before_action :move_to_signed_in
+
 
  def index
   @cart_items = CartItem.all
