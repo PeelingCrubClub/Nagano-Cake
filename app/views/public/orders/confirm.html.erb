@@ -53,7 +53,10 @@
               </tr>
               <tr>
                 <th>請求金額</th>
+
+
                 <td><%= @total = @order.shipping_fee + @sum.floor %></td>
+
               </tr>
             </tbody>
           </table>
@@ -72,6 +75,8 @@
       <%= form_with model: @order, url: orders_path, method: :post, local: true do |f| %>
         <%= f.hidden_field :payment_method, value: @order.payment_method  %>
         <%= f.hidden_field :shipping_fee, value: 800  %>
+
+
         <%= f.hidden_field :total_price, value: @total %>
         <%= f.hidden_field :receiver_name, value: @order.receiver_name %>
         <%= f.hidden_field :delivery_address, value: @order.delivery_address %>

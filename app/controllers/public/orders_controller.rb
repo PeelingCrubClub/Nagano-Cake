@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
      @order = Order.new
      @cart_item = CartItem.where(customer_id: current_customer.id)
      @customer = current_customer
+     @address_new = Delivery.new
    end
 
    def create
@@ -54,7 +55,7 @@ class Public::OrdersController < ApplicationController
         @address_new.delivery_postal_code = @order.shipping_postal_code
         @address_new.delivery_address = @order.delivery_address
         @address_new.address_name = @order.receiver_name
-        if @order.save(order_params)
+        if @address_new.save(order_params)
         end
      else
        redirect_to new_order_path
