@@ -20,7 +20,7 @@
             <%= l order.created_at %>
             <% end %>
             </td>
-            <td><%= order.customer.first_name %><%= order.customer.last_name %></td>
+            <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
 
             <td><!--注文個数合計-->
               <%= order.order_items.sum(:number_of_piaces) %>
