@@ -28,8 +28,8 @@
   <div class="form-group row">
     <%= f.label :item_status, '販売ステータス' %>
     <%= f.select :item_status, {
-      "販売中": true,
-      "売り切れ": false
+      "販売中": 'on_sale',
+      "売り切れ": 'sold_out'
     } %>
   </div>
 
