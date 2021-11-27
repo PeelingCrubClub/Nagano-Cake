@@ -10,7 +10,7 @@
     <div class="row mt-5">
       <table class="table table-bordered table-hover">
         <thead class="table-active text">
-          <tr>
+          <tr bgcolor="#fce4ec">
             <th>注文日</th>
             <th>配送先</th>
             <th>注文商品</th>
@@ -19,7 +19,7 @@
             <th>注文詳細</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody bgcolor="#fcf7f7">
           <% @orders.each do |order| %>
           <tr class="light-text">
             <td><%= order.created_at.strftime('%Y年%m月%d日') %></td>

@@ -72,12 +72,23 @@ header{
   color:#f0d0b5 !important;
 }
 
+
+.wrapper{
+  min-height: 100vh;/*①高さの最小値*/
+  position: relative;/*②相対位置*/
+}
+
+
+
 footer{
-    position: absolute;/* ←絶対位置 */
+    margin-top: auto;
     bottom: 0;
     width: 100%;
     text-align: center;
+    padding: 30px 0;
     background-color:#e44c64
+
+
 }
 
 .fa:before{
@@ -110,4 +121,26 @@ a:hover {
 
 .pagination {
   justify-content: center;
+}
+
+table { width: 100%; }
+
+.button {
+  display       : inline-block;
+  border-radius : 5%;          /* 角丸       */
+  font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 12px;   /* 余白       */
+  background    : #000066;     /* 背景色     */
+  color         : #ffffff;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+  box-shadow    : 6px 6px 3px #666666;  /* 影の設定 */
+  border        : 2px solid #000066;    /* 枠の指定 */
+}
+.button:hover {
+  box-shadow    : none;        /* カーソル時の影消去 */
+  color         : #000066;     /* 背景色     */
+  background    : #ffffff;     /* 文字色     */
 }

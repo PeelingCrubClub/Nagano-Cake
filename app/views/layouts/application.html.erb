@@ -10,8 +10,6 @@
   </head>
 
    <body class="min-vh-100 d-flex flex-column">
-     <div class="footerFixed">
-       
       <header class="mb-4">
         <% if controller.class.parent.name == "Admin" %>
           <%= render "admin/shared/header" %>
@@ -19,14 +17,16 @@
           <%= render "public/shared/header" %>
         <% end %>
       </header>
-       
+    <div class="wrapper">
       <main class="flex-grow-1">
         <%= yield %>
       </main>
-       
+    </div>
+
+
       <footer class="mt-4">
          <%= render "shared/footer" %>
       </footer>
-     </div>
+
   </body>
 </html>
