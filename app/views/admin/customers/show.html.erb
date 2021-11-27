@@ -2,38 +2,39 @@
 <div class="container">
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0">
-      <h2><span class="badge badge-secondary"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員情報</h2>
+      <h2><span class="badge mb-3"><%= @customer.first_name %> <%= @customer.last_name %>さんの会員情報</h2>
+       
        <table class="table table-borderless">
          <tr>
-           <td>会員ID</td>
-           <td><%= @customer.id %></td>
+           <th bgcolor="#fce4ec">会員ID</th>
+           <td bgcolor="#fcf7f7"><%= @customer.id %></td>
           </tr>
           <tr>
-            <td>氏名</td>
-            <td><%= @customer.first_name %><%= @customer.last_name %> </td>
+            <th bgcolor="#fce4ec">氏名</th>
+            <td bgcolor="#fcf7f7"><%= @customer.first_name %><%= @customer.last_name %> </td>
           </tr>
           <tr>
-            <td>フリガナ</td>
-            <td><%= @customer.first_name_kana %> <%= @customer.last_name_kana %> </td>
+            <th bgcolor="#fce4ec">フリガナ</th>
+            <td bgcolor="#fcf7f7"><%= @customer.first_name_kana %> <%= @customer.last_name_kana %> </td>
           </tr>
           <tr>
-            <td>郵便番号</td>
-            <td><%= @customer.postal_code %></td>
+            <th bgcolor="#fce4ec">郵便番号</th>
+            <td bgcolor="#fcf7f7"><%= @customer.postal_code %></td>
           </tr>
           <tr>
-            <td>住所</td>
-            <td><%= @customer.address %></td>
+            <th bgcolor="#fce4ec">住所</th>
+            <th bgcolor="#fcf7f7"><%= @customer.address %></th>
+          </tr>
+            <th bgcolor="#fce4ec">電話番号</th>
+            <td bgcolor="#fcf7f7"><%= @customer.tel %></td>
           </tr>
           <tr>
-            <td>電話番号</td>
-            <td><%= @customer.tel %></td>
+            <th bgcolor="#fce4ec">メールアドレス</th>
+            <th bgcolor="#fcf7f7"> <%= @customer.email %></th>
           </tr>
           <tr>
-            <td>メールアドレス</td>
-            <td><%= @customer.email %></td>
-          </tr>
-          <tr>
-            <td>会員ステータス</td>
+            <th bgcolor="#fce4ec">会員ステータス</th>
+            <td bgcolor="#fcf7f7">
                <% if @customer.is_deleted %>
               <p class="text-muted">退会</p>
             <% else %>

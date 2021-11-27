@@ -13,6 +13,21 @@
 }
 
 .image3 {
+  background-image: image-url("tart.jpg");
+  background-size: cover;
+  background-position: center;
+}.image1 {
+  background-image: image-url("chocolate_cake.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.image2 {
+  background-image: image-url("syotocake.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.image3 {
   background-image: image-url("aso-tocake.jpg");
   background-size: cover;
   background-position: center;

@@ -27,11 +27,11 @@
 //= require rails-ujs
 
 $(document).ready(function () {
-  $("#images").skippr({
+  $("#theTarget").skippr({
     transition : 'fade',
     speed : 1000,
     easing : 'easeOutQuart',
-    navType : 'block',
+    navType : 'bubble',
     childrenElementType : 'div',
     arrows : true,
     autoPlay : true,
