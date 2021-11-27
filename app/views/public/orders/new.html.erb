@@ -13,37 +13,62 @@
           <%= f.radio_button :payment_method, :銀行振込 %>
           <%= f.label :payment_method, :銀行振込, value: :銀行振込 %>
         </div>
-        <div class="mt-5">
+       </div>
+      </div>
+        <div class="row mt-5">
           <p>お届け先</p>
-          <div>
-            <%= f.radio_button :to_address, 0 %>
-            <%= f.label :to_address, "ご自身の住所" %>
-            〒<%= current_customer.postal_code %>　<%= current_customer.address %>
-              <%= current_customer.last_name %><%= current_customer.first_name %>
-          </div>
-          <div>
-            <%= f.radio_button :to_address, 1 %>
-            <%= f.label :to_address, "登録済住所から選択", value: 1 %>
-            <%= f.collection_select :delivery_id, current_customer.deliveries, :id, :full_address, :prompt => "選択してください" %>
-          </div>
-          <div>
-            <%= f.radio_button :to_address, 2 %>
-            <%= f.label :to_address, "新しいお届け先", value: 2 %>
-          </div>
-          <div>
-            <%= f.label :new_address, "郵便番号（ハイフンなし）"%>
-            <%= f.text_field :shipping_postal_code, :placeholder => "0000000" %>
-          </div>
-          <div>
-            <%= f.label :new_address, "住所"%>
-            <%= f.text_field :delivery_address, :placeholder => "東京都渋谷区代々木神園町０−０", :size =>"38x10"%>
-          </div>
-          <div>
-            <%= f.label :new_address, "宛名"%>
-            <%= f.text_field :receiver_name, :placeholder => "令和道子" %>
-          </div>
         </div>
-        <%= f.submit "確認画面に進む"%>
+
+        <div class="row mt-2">
+         <table>
+           
+           <tr>
+             <td><%= f.radio_button :to_address, 0 %> <%= f.label :to_address, "ご自身の住所" %></td>
+                <td>
+                〒<%= current_customer.postal_code %>　<%= current_customer.address %>
+                  <%= current_customer.last_name %><%= current_customer.first_name %>
+                </td>
+            </tr>
+                
+           <tr>
+             <td><%= f.radio_button :to_address, 1 %><%= f.label :to_address, "登録済住所から選択", value: 1 %></td>
+             <td><%= f.collection_select :delivery_id, current_customer.deliveries, :id, :full_address, :prompt => "選択してください" %></td>
+           </tr>
+ 
+
+          <tr>
+            <td><%= f.radio_button :to_address, 2 %><%= f.label :to_address, "新しいお届け先", value: 2 %><td>
+          </tr>
+          
+            <tr>
+              <th><%= f.label :new_address, "郵便番号（ハイフンなし）"%></th>
+                <td>
+                   <%= f.text_field :shipping_postal_code, :placeholder => "0000000" %>
+                </td>
+            </tr>
+
+           <tr>
+              <th><%= f.label :new_address, "住所"%></th>
+                <td>
+                   <%= f.text_field :delivery_address, :placeholder => "東京都渋谷区代々木神園町０−０", :size =>"38x10"%>
+                </td>
+            </tr>
+
+            <tr>
+              <th><%= f.label :new_address, "宛名"%></th>
+                <td>
+                 <%= f.text_field :receiver_name, :placeholder => "令和道子" %>
+                </td>
+            </tr>
+        </table>
+        </div>
+      
+       <div class="row">
+         <div class="col-auto mx-auto mt-5">
+         <%= f.submit "確認画面に進む" %>
+       </div>
+    </div>
+         
       <% end %>
     </div>
   </div>
