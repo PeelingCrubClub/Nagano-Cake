@@ -31,9 +31,12 @@
       </table>
      </div>
     <% end %>
-    <div class="text-right">
-      <%= link_to "すべての商品を見る", items_path %>
-    </div>
   </div>
-</div>
+     <div class="text-right">
+      <%= link_to items_path do%>
+      すべての商品を見る<i class="fas fa-search"></i>
+      <% end %>
+     </div>
+   
+ </div>
 </div>

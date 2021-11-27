@@ -1,39 +1,48 @@
-<%= form_with model: [:admin, item], local: true do |f| %>
+<table class="mt-5">
+  <%= form_with model: [:admin, item], local: true do |f| %>
 
- <div class="form-group row">
-   <%= f.label :image, "商品画像" %>
-   <%= f.attachment_field :image %>
-  </div>
+   <tr>
+     <th><%= f.label :image, "商品画像" %></th>
+     <td><%= f.attachment_field :image %></td>
+   </tr>
+   
+    <tr>
+      <th><%= f.label :item_name, "商品名" %></th>
+      <td><%= f.text_field :item_name, placeholder: "商品名", class: "form-control" %></td>
+     </tr>
+     
+    
+    <tr>
+     <th><%= f.label :detail, "商品説明" %></th>
+     <td><%= f.text_area :detail, placeholder: "ここに説明文を記述します", class: "form-control" %></td>
+    </tr>
+    
+    
+    <tr>
+     <th><%= f.label :genre_id, "ジャンル" %></th>
+     <td><%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"} %></td>
+    </tr>
+    
+    <tr>
+     <th><%= f.label :price, "税抜き価格" %></th>
+     <td><%= f.text_field :price, placeholder: "商品の税別価格を記述して下さい", class: "form-control" %></td>
+    </tr>  
 
-  <div class="form-group row">
-    <%= f.label :item_name, "商品名" %>
-    <%= f.text_field :item_name, placeholder: "商品名" %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :detail, "商品説明" %>
-    <%= f.text_area :detail, placeholder: "ここに説明文を記述します" %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :genre_id, "ジャンル" %>
-    <%= f.collection_select :genre_id, Genre.all, :id, :name, {prompt: "選択してください"} %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :price, "税抜き価格" %>
-    <%= f.text_field :price, placeholder: "商品の税別価格を記述して下さい" %>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :item_status, '販売ステータス' %>
-    <%= f.select :item_status, {
+    <tr>
+     <th><%= f.label :item_status, '販売ステータス' %></th>
+     <td><%= f.select :item_status, {
       "販売中": 'on_sale',
       "売り切れ": 'sold_out'
-    } %>
-  </div>
+    } %></td>
+    </tr> 
 
-  <div class="form-group row">
+</table>
+
+  <div class="row justify-content-center">
+    <div class="form-group row">
+     <div class="col-sm-4 offset-sm-4 mt-5">
      <%= f.submit "新規登録", class:"btn btn-success" %>
+     </div>
+    </div>
   </div>
 <% end %>
